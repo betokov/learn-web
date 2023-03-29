@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructor, new</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Конструктор, оператор «new»</h1>
+
+    <h2>Функция-конструктор</h2>
+
+    <p>Функции-конструкторы технически являются обычными функциями. Но есть два соглашения:</p>
+
+    <ol>
+      <li>Имя функции-конструктора должно начинаться с большой буквы.</li>
+      <li>Функция-конструктор должна выполняться только с помощью оператора <b>«new»</b>.</li>
+    </ol>
+
+    <code class="code-block">
+      function User(name) { <br>
+        &nbsp;this.name = name; <br>
+        &nbsp;this.isAdmin = false; <br>
+      } <br><br>
+
+      let user = new User("Jack"); <br><br>
+
+      alert(user.name); // Jack <br>
+      alert(user.isAdmin); // false
+    </code>
+
+    <p>Когда функция вызывается как <b>new User(...)</b>, происходит следующее:</p>
+
+    <ol>
+      <li>Создаётся новый пустой объект, и он присваивается <b>this</b>.</li>
+      <li>Выполняется тело функции. Обычно оно модифицирует <b>this</b>, добавляя туда новые свойства.</li>
+      <li>Возвращается значение <b>this</b>.</li>
+    </ol>
+
+    <code class="code-block">
+      function User(name) { <br>
+        // this = {};  (неявно) <br><br>
+
+        // добавляет свойства к this <br>
+        this.name = name; <br>
+        this.isAdmin = false; <br><br>
+
+        // return this;  (неявно) <br>
+      }
+    </code>
+
+    <p>Данная конструкция гораздо удобнее и читабельнее, чем многократное создание литерала объекта. Это и является основной целью конструкторов – реализовать код для многократного создания однотипных объектов.</p>
+
+    <h2>new function() { … }</h2>
+
+    <p>Если в нашем коде присутствует большое количество строк, создающих один сложный объект, то мы можем обернуть их в функцию-конструктор, которая будет немедленно вызвана:</p>
+
+    <code class="code-block">
+      // создаём функцию и сразу же вызываем её с помощью new <br>
+      let user = new function() { <br>
+        &nbsp;this.name = "John"; <br>
+        &nbsp;this.isAdmin = false; <br><br>
+
+        &nbsp;// ...другой код для создания пользователя <br>
+        &nbsp;// возможна любая сложная логика и инструкции <br>
+        &nbsp;// локальные переменные и так далее <br>
+      };
+    </code>
+
+    <p>Такой конструктор не может быть вызван снова, так как он нигде не сохраняется, просто создаётся и тут же вызывается. Таким образом, этот трюк направлен на инкапсуляцию кода, который создаёт отдельный объект, без возможности повторного использования в будущем.</p>
+
+    <h2>Проверка на вызов в режиме конструктора: new.target</h2>
+
+    <p>Используя специальное свойство <b>new.target</b> внутри функции, мы можем проверить, вызвана ли функция при помощи оператора <b>new</b> или без него.</p>
+
+    <p>В случае обычного вызова функции <b>new.target</b> будет <b>undefined</b>. Если же она была вызвана при помощи <b>new</b>, <b>new.target</b> будет равен самой функции.</p>
+
+    <code class="code-block">
+      function User() { <br>
+        &nbsp;alert(new.target); <br>
+      } <br><br>
+
+      // без "new": <br>
+      User(); // undefined <br><br>
+
+      // с "new": <br>
+      new User(); // function User { ... } <br>
+    </code>
+
+    <p>Подход, который иногда используется в библиотеках, чтобы сделать синтаксис более гибким. Чтобы люди могли вызывать функцию с <b>new</b> и без него, и она все ещё могла работать. Впрочем, вероятно, это не очень хорошая практика использовать этот трюк везде, так как отсутствие new может ввести разработчика в заблуждение. С <b>new</b> мы точно знаем, что создаётся новый объект:</p>
+
+    <code class="code-block">
+      function User(name) { <br>
+        &nbsp;if (!new.target) { // в случае, если вы вызвали меня без оператора new <br>
+        &nbsp;&nbsp;return new User(name); // ...я добавлю new за вас <br>
+        &nbsp;} <br><br>
+
+        &nbsp;this.name = name; <br>
+      } <br><br>
+
+      let john = User("John"); // переадресовывает вызов на new User <br>
+      alert(john.name); // John
+    </code>
+
+    <h2>Возврат значения из конструктора, return</h2>
+
+    <p>Обычно конструкторы не имеют оператора <b>return</b>. Их задача – записать все необходимое в <b>this</b>, и это автоматически становится результатом. Но если <b>return</b> всё же есть, то применяется простое правило:</p>
+
+    <ul>
+      <li>При вызове <b>return</b> с объектом, вместо this вернётся объект.</li>
+      <li>При вызове <b>return</b> с примитивным значением, оно проигнорируется.</li>
+    </ul>
+
+    <h2>Пропуск скобок</h2>
+
+    <p>Мы можем не ставить круглые скобки после new:</p>
+
+    <code class="code-block">
+      let user = new User; // без скобок <br>
+      // то же, что и <br>
+      let user = new User();
+    </code>
+
+    <p>Пропуск скобок считается плохой практикой!</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

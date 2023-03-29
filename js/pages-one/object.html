@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Объекты</h1>
+
+    <p>Свойства объекта, тоесть, названия свойств объекта могут быть строкой или символом, все остальные типы будут преобразованы к строке.</p>
+
+    <code class="code-block">
+      let user = new Object(); // синтаксис "конструктор объекта" <br>
+      let user = {};  // синтаксис "литерал объекта"
+    </code>
+
+    <p>Для удаления свойства объекты мы можем использовать оператор <b>delete</b>.</p>
+
+    <code>delete user.age;</code> <br><br>
+
+    <p>Имя свойства может состоять из нескольких слов, но тогда оно должно быть заключено в кавычки:</p>
+
+    <code class="code-block">
+      let user = { <br>
+        &nbsp;name: "John", <br>
+        &nbsp;age: 30, <br>
+        &nbsp;"likes birds": true,  // имя свойства из нескольких слов должно быть в кавычках <br>
+        // в конце запятая назвается «висячая запятая» <br>
+      };
+    </code>
+
+    <h2>Квадратные скобки</h2>
+
+    <p>Для свойств, имена которых состоят из нескольких слов обращение идет через квадратные скобки: <code>user["likes birds"] = true;</code></p>
+
+    <p>Квадратные скобки также позволяют обратиться к свойству, имя которого может быть результатом выражения.</p>
+
+    <code class="code-block">
+      let key = "likes birds"; <br><br>
+
+      // то же самое, что и user["likes birds"] = true; <br>
+      user[key] = true;
+    </code>
+
+    <h2>Вычисляемые свойства</h2>
+
+    <p>Мы можем использовать квадратные скобки в литеральной нотации для создания вычисляемого свойства.</p>
+
+    <code class="code-block">
+      let fruit = prompt("Какой фрукт купить?", "apple"); <br><br>
+
+      let bag = { <br>
+        &nbsp;[fruit]: 5, // имя свойства будет взято из переменной fruit <br>
+      };
+    </code>
+
+    <p>Мы можем использовать и более сложные выражения:</p>
+
+    <code class="code-block">
+      let fruit = 'apple'; <br>
+      let bag = { <br>
+        &nbsp;[fruit + 'Computers']: 5 // bag.appleComputers = 5 <br>
+      };
+    </code>
+
+    <h2>Свойство из переменной</h2>
+
+    <p>В реальном коде часто нам необходимо использовать существующие переменные как значения для свойств с тем же именем.</p>
+
+    <code class="code-block">
+      function makeUser(name, age) { <br>
+        &nbsp;return { <br>
+          &nbsp;&nbsp;name, // то же самое, что и name: name <br>
+          &nbsp;&nbsp;age   // то же самое, что и age: age <br>
+          &nbsp;&nbsp;// ... <br>
+        &nbsp;}; <br>
+      }
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      let name = "Barasbi" <br><br>
+
+      let a = { <br>
+        &nbsp;name, // Barasbi<br>
+        &nbsp;age: 36 <br>
+      }
+    </code>
+
+    <p>Если переменная <b>name</b> не будет инициализирована, нигде в коде, то в свойство <b>name</b> запишется пустое значение.</p>
+
+    <h2>Ограничения на имена свойств</h2>
+
+    <p>Как мы уже знаем, имя переменной не может совпадать с зарезервированными словами, такими как «for», «let», «return» и т.д. Но для свойств объекта такого ограничения нет.</p>
+
+    <h2>Проверка существования свойства, оператор «in»</h2>
+
+    <p>При обращении к свойству, которого нет, возвращается undefined. Также существует специальный оператор <b>"in"</b> для проверки существования свойства в объекте.</p>
+
+    <code class="code-block">
+      "key" in object // true of false
+    </code>
+
+    <p>Слева от оператора <b>in</b> должно быть имя свойства. Обычно это строка в кавычках. Если мы опускаем кавычки, это значит, что мы указываем переменную, в которой находится имя свойства.</p>
+
+    <p>При обращении к свойству, которого нет, возвращается <b>undefined</b>. Это позволяет просто проверить существование свойства. Для чего вообще нужен оператор <b>in</b>? Разве недостаточно сравнения с <b>undefined</b>?</p>
+
+    <p>В большинстве случаев прекрасно сработает сравнение с <b>undefined</b>. Но есть особый случай, когда оно не подходит, и нужно использовать <b>«in»</b>.</p>
+
+    <p>Это когда свойство существует, но содержит значение <b>undefined</b>:</p>
+
+    <code class="code-block">
+      let obj = { <br>
+        &nbsp;test: undefined <br>
+      }; <br><br>
+
+      alert( obj.test ); //  выведет undefined, значит свойство не существует? <br>
+      alert( "test" in obj ); // true, свойство существует! <br>
+    </code>
+
+    <h2>Цикл "for..in"</h2>
+
+    <p>Для перебора всех свойств объекта используется цикл <b>for..in</b>.</p>
+
+    <code class="code-block">
+      let user = { <br>
+        &nbsp;name: "John", <br>
+        &nbsp;age: 30, <br>
+        &nbsp;isAdmin: true <br>
+      }; <br><br>
+
+      for (let key in user) { <br>
+        &nbsp;// ключи <br>
+        &nbsp;alert( key );  // name, age, isAdmin <br>
+        &nbsp;// значения ключей <br>
+        &nbsp;alert( user[key] ); // John, 30, true <br>
+      }
+    </code>
+
+    <h2>Упорядочение свойств объекта</h2>
+
+    <p>При переборе свойств через цикл cвойства упорядочены особым образом: свойства с целочисленными ключами сортируются по возрастанию, остальные располагаются в порядке создания.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional branching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Условное ветвление: if, ?</h1>
+
+    <h2>Преобразование к логическому типу</h2>
+
+    <p>Инструкция <b>if (…)</b> вычисляет выражение в скобках и преобразует результат к логическому типу.</p>
+
+    <p>Мы также можем передать заранее вычисленное в переменной логическое значение в <b>if</b>:</p>
+
+    <code class="code-block">
+      let condition = (year == 2005) // true <br>
+      или <br>
+      let condition = year == 2005 // true <br><br>
+
+      if (condition) {}
+    </code>
+
+    <h2>Несколько операторов „?“</h2>
+
+    <code class="code-block">
+      let message = (age > 3) ? 'Здравствуй малыш!' : <br>
+      (age < 18) ? 'Привет!' : <br>
+      (age < 100) ? 'Здравствуйте!' : <br>
+      'Какой необычный возраст'
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

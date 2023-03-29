@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optional chaining</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Опциональная цепочка '?.'</h1>
+
+    <p>Опциональная цепочка <b>?.</b> — это безопасный способ доступа к свойствам вложенных объектов, даже если какое-либо из промежуточных свойств не существует.</p>
+
+    <h2>Проблема «несуществующего свойства»</h2>
+
+    <code class="code-block">
+      let user = {}; // пользователь без свойства "address" <br><br>
+
+      alert(user.address.street); // Ошибка!
+    </code>
+
+    <p>Это ожидаемый результат. JavaScript работает следующим образом. Поскольку user.address имеет значение <b>undefined</b>, попытка получить <b>user.address.street</b> завершается ошибкой.</p>
+
+    <p>Во многих практических случаях мы бы предпочли получить здесь <b>undefined</b> вместо ошибки. Как мы можем это сделать? C помощью <b>if</b>, <b>?:</b> или <b>&&</b>. Но такие подходы сильно затрудняют понимание кода и имена свойств зачастую много раз дублируются. Для этих целей был внедрен в язык <b>«опициональная цепочка»</b>.</p>
+
+    <h2>Опциональная цепочка</h2>
+
+    <p>Опциональная цепочка <b>?.</b> останавливает вычисление и возвращает <b>undefined</b>, если значение перед <b>?.</b> равно <b>undefined</b> или <b>null</b>.</p>
+
+    <code class="code-block">
+      let user = {}; // пользователь без адреса <br><br>
+
+      alert( user?.address?.street ); // undefined (без ошибки) <br> <br>
+
+      let html = document.querySelector('.elem')?.innerHTML; // будет undefined, если элемента нет
+    </code>
+
+    <p>Если переменной user вообще нет, то user?.anything приведёт к ошибке:</p>
+
+    <code class="code-block">
+      // ReferenceError: user is not defined <br>
+      user?.address;
+    </code>
+
+    <h2>Другие варианты применения: ?.(), ?.[]</h2>
+
+    <p>Опциональная цепочка <b>?.</b> — это не оператор, а специальная синтаксическая конструкция, которая также работает с функциями и квадратными скобками.</p>
+
+    <code class="code-block">
+      let userAdmin = { <br>
+        &nbsp;admin() { <br>
+          &nbsp;&nbsp;alert("Я админ"); <br>
+          &nbsp;} <br>
+      }; <br><br>
+
+      let userGuest = {}; <br><br>
+
+      userAdmin.admin?.(); // Я админ <br><br>
+
+      userGuest.admin?.(); // ничего не произойдет (такого метода нет)
+    </code>
+
+    <p>Здесь в обеих строках мы сначала используем точку <b>(userAdmin.admin)</b>, чтобы получить свойство <b>admin</b>, потому что мы предполагаем, что объект <b>user</b> существует, так что читать из него безопасно.</p>
+
+    <p>Затем <b>?.()</b> проверяет левую часть: если функция <b>admin</b> существует, то она запускается (это так для <b>userAdmin</b>). В противном случае (для <b>userGuest</b>) вычисление остановится без ошибок.</p>
+
+    <p>Синтаксис <b>?.[]</b> также работает, если мы хотим использовать скобки <b>[]</b> для доступа к свойствам вместо точки <b>.</b>. Как и в предыдущих случаях, он позволяет безопасно считывать свойство из объекта, который может не существовать.</p>
+
+    <code class="code-block">
+      let key = "firstName"; <br><br>
+
+      let user1 = { <br>
+        &nbsp;firstName: "John" <br>
+      }; <br><br>
+
+      let user2 = null; <br><br>
+
+      alert( user1?.[key] ); // John <br>
+      alert( user2?.[key] ); // undefined <br>
+    </code>
+
+    <p>Также мы можем использовать <b>?.</b> с <b>delete</b>:</p>
+
+    <code class="code-block">
+      delete user?.name; // удаляет user.name если пользователь существует
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Symbol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Тип данных Symbol</h1>
+
+    <h2>Символы</h2>
+
+    <p>«Символ» представляет собой уникальный идентификатор. <br>
+      Создаются новые символы с помощью функции <b>Symbol()</b>:</p>
+
+    <code class="code-block">
+      // Создаём новый символ - id <br>
+      let id = Symbol();
+    </code>
+
+    <p>При создании, символу можно дать описание (также называемое имя), в основном использующееся для отладки кода:</p>
+
+    <code class="code-block">
+      // Создаём символ id с описанием (именем) "id" <br>
+      let id = Symbol("id");
+    </code>
+
+    <p>Символы гарантированно уникальны. Даже если мы создадим множество символов с одинаковым описанием, это всё равно будут разные символы. Описание – это просто метка, которая ни на что не влияет.</p>
+
+    <code class="code-block">
+      let id1 = Symbol("id"); <br>
+      let id2 = Symbol("id"); <br><br>
+
+      alert(id1 == id2); // false
+    </code>
+
+    <h2>Символы не преобразуются автоматически в строки</h2>
+
+    <p>Большинство типов данных в JavaScript могут быть неявно преобразованы в строку. Например, от функции <b>alert</b>. Символы же особенные и не преобразуются автоматически.</p>
+
+    <p>Это – языковая «защита» от путаницы, ведь строки и символы – принципиально разные типы данных и не должны неконтролируемо преобразовываться друг в друга.</p>
+
+    <p>Чтобы вывести только описание, нужно обратиться к свойству <code>Symbol("id").description</code>.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

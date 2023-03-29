@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usestrict mode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Преобразование типов</h1>
+
+    <p>Чаще всего операторы и функции автоматически приводят переданные им значения к нужному типу. Например, <b>alert</b> автоматически преобразует любое значение к строке. Математические операторы преобразуют значения к числам.</p>
+
+    <h2>Строковое преобразование</h2>
+
+    <p>Например, <b>alert(value)</b> преобразует значение к строке. Также мы можем использовать функцию <b>String(value)</b>, чтобы преобразовать значение к строке. Также к строке можно привести если прибавить что нибудь к строке: <b>""+nul = 'null'</b>.</p>
+
+    <h2>Численное преобразование</h2>
+
+    <p>Численное преобразование происходит в математических функциях и выражениях.</p>
+
+    <code class="code-block">
+      alert( "6" / "2" ); // 3, строки преобразуются в числа <br><br>
+
+      let str = "123"; <br>
+      Number(str); //123
+    </code>
+
+    <p>Если строка не может быть явно приведена к числу, то результатом преобразования будет <b>NaN</b>.</p>
+
+    <code class="code-block">
+      let age = Number("Любая строка вместо числа"); <br><br>
+
+      alert(age); // NaN, преобразование не удалось
+    </code>
+
+    <p>Правила численного преобразования:</p>
+
+    <table>
+      <tr>
+        <th>Значение</th>
+        <th>Преобразуется в...</th>
+      </tr>
+
+      <tr>
+        <td><b>undefined</b></td>
+        <td><b>NaN</b></td>
+      </tr>
+
+      <tr>
+        <td><b>null</b></td>
+        <td><b>0</b></td>
+      </tr>
+
+      <tr>
+        <td><b>true / false</b></td>
+        <td><b>1 / 0</b></td>
+      </tr>
+
+      <tr>
+        <td><b>string</b></td>
+        <td>Пробельные символы (пробелы, знаки табуляции <b>\t</b>, знаки новой строки <b>\n</b> и т. п.) по краям обрезаются. Далее, если остаётся пустая строка, то получаем <b>0</b>, иначе из непустой строки «считывается» число. При ошибке результат <b>NaN</b>.</td>
+      </tr>
+    </table>
+
+    <br>
+
+    <code class="code-block">
+      alert( Number("   123   ") ); // 123 <br>
+      alert( Number("123z") );      // NaN (ошибка чтения числа на месте символа "z") <br>
+      alert( Number(true) );        // 1 <br>
+      alert( Number(false) );       // 0
+    </code>
+
+    <p>Большинство математических операторов также производит данное преобразование.</p>
+
+    <h2>Логическое преобразование</h2>
+
+    <p>Происходит в логических операциях, но также может быть выполнено явно с помощью функции <b>Boolean(value)</b>.</p>
+
+    <table>
+      <tr>
+        <th>Значение</th>
+        <th>Становится…</th>
+      </tr>
+
+      <tr>
+        <td><b>0, null, undefined, NaN, ""</b></td>
+        <td><b>false</b></td>
+      </tr>
+
+      <tr>
+        <td>любое другое значение</td>
+        <td><b>true</b></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <p>Неявные логические преобразования:</p>
+
+    <ul>
+      <li>Условия в команде <b>if</b>.</li>
+      <li>Условия (вторая часть) в заголовке <b>for</b></li>
+      <li>Условия в циклах <b>while()</b> и <b>do .. while()</b></li>
+      <li>Условия в тернарных выражениях <b>? :</b></li>
+      <li>Для операторов <b>||</b> или <b>&&</b></li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

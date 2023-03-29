@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Строки</h1>
+
+    <h2>Длина строки</h2>
+
+    <p>Свойство length содержит длину строки: <code>alert( `My\n`.length ); // 3</code></p>
+
+    <h2>Доступ к символам</h2>
+
+    <code class="code-block">
+      let str = `Hello`; <br><br>
+
+      // получаем первый символ <br>
+      alert( str[0] ); // H <br>
+      alert( str.at(0) ); // H <br><br>
+
+      alert( str[-2] ); // undefined <br>
+      alert( str.at(-2) ); // l
+    </code>
+
+    <p>Также можно перебрать строку посимвольно, используя <b>for..of</b></p>
+
+    <code class="code-block">
+      for (let char of "Hello") { <br>
+        &nbsp;alert(char); // H,e,l,l,o (char — сначала "H", потом "e", потом "l" и т.д.) <br>
+      }
+    </code>
+
+    <h2>Строки неизменяемы</h2>
+
+    <p>Содержимое строки в JavaScript нельзя изменить. Нельзя взять символ посередине и заменить его. Как только строка создана — она такая навсегда. Можно создать новую строку и записать её в ту же самую переменную вместо старой.</p>
+
+    <h2>Изменение регистра</h2>
+
+    <code class="code-block">
+      alert( 'Interface'.toUpperCase() ); // INTERFACE
+      alert( 'Interface'.toLowerCase() ); // interface
+    </code>
+
+    <h2>Поиск подстроки</h2>
+
+    <p><code>str.indexOf(substr, pos)</code> - он ищет подстроку <b>substr</b> в строке <b>str</b>, начиная с позиции <b>pos</b>, и возвращает позицию, на которой располагается совпадение, либо <b>-1</b> при отсутствии совпадений.</p>
+
+    <p><code>str.lastIndexOf(substr, position)</code> - ищет с конца строки.</p>
+
+    <h2>includes, startsWith, endsWith</h2>
+
+    <ul>
+      <li><code>str.includes(substr, pos)</code> - возвращает <b>true</b>, если в строке <b>str</b> есть подстрока <b>substr</b>, либо <b>false</b>, если нет.</li>
+
+      <li><b>str.startsWith</b> - начинается ли строка определенной строкой.</li>
+      <li><b>str.endsWith</b> - заканчивается ли строка определенной строкой.</li>
+    </ul>
+
+    <h2>Получение подстроки</h2>
+
+    <p>В JavaScript есть 3 метода для получения подстроки: <b>substring</b>, <b>substr</b> и <b>slice</b>.</p>
+
+    <h3>str.slice(start [, end])</h3>
+
+    <p>Возвращает часть строки от <b>start</b> до (не включая) <b>end</b>.</p>
+
+    <code class="code-block">
+      let str = "stringify"; <br>
+      alert( str.slice(0, 5) ); // strin - не включая 5 <br>
+      alert( str.slice(2) ); // ringify <br>
+      alert( str.slice(-4, -1) ); // gif - начинаем с позиции 4 справа, а заканчиваем на позиции 1 справа
+    </code>
+
+    <h3>str.substring(start [, end])</h3>
+
+    <p>Возвращает часть строки между <b>start</b> и <b>end</b> (не включая) <b>end</b>.</p>
+
+    <p>Это — почти то же, что и <b>slice</b>, но можно задавать <b>start</b> больше <b>end</b>.
+      Если start больше end, то метод <b>substring</b> сработает так, как если бы аргументы были поменяны местами.</p>
+
+    <code class="code-block">
+      let str = "stringify"; <br><br>
+
+      // для substring эти два примера — одинаковы <br>
+      alert( str.substring(2, 6) ); // "ring" <br>
+      alert( str.substring(6, 2) ); // "ring"
+    </code>
+
+    <p>Отрицательные значения <b>substring</b>, в отличие от <b>slice</b>, не поддерживает, они интерпретируются как <b>0</b>.</p>
+
+    <h3>str.substr(start [, length])</h3>
+
+    <p>Возвращает часть строки от <b>start</b> длины <b>length</b>.</p>
+
+    <code class="code-block">
+      let str = "stringify"; <br>
+      // ring, получаем 4 символа, начиная с позиции 2 <br>
+      alert( str.substr(2, 4) ); <br>
+      // gi, получаем 2 символа, начиная с позиции 4 с конца строки <br>
+      alert( str.substr(-4, 2) ); <br>
+      alert( str.substr(2) ); //ringify
+    </code>
+
+    <h2>Сравнение строк</h2>
+
+    <h3>str.codePointAt(pos)</h3>
+
+    <p>Возвращает код для символа, находящегося на позиции <b>pos</b>:</p>
+
+    <code class="code-block">
+      // одна и та же буква в нижнем и верхнем регистре <br>
+      // будет иметь разные коды <br>
+      alert( "z".codePointAt(0) ); // 122 <br>
+      alert( "Z".codePointAt(0) ); // 90
+    </code>
+
+    <h3>String.fromCodePoint(code)</h3>
+
+    <p>Создаёт символ по его коду <b>code</b></p>
+
+    <code class="code-block">
+      alert( String.fromCodePoint(90) ); // Z
+    </code>
+
+    <h2>Правильное сравнение</h2>
+
+    <p>Вызов <b>str.localeCompare(str2)</b> возвращает число, которое показывает, какая строка больше в соответствии с правилами языка:</p>
+
+    <ul>
+      <li>Отрицательное число, если <b>str</b> меньше <b>str2</b>.</li>
+      <li>Положительное число, если str больше <b>str2</b>.</li>
+      <li><b>0</b>, если строки равны.</li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walking DOM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Навигация по DOM элементам</h1>
+
+    <p><img src="/img/navigation.png" alt="Схема навигации по DOM" width="400" height="786"></p>
+
+    <code class="code-block">
+      &lt;html&gt; = document.documentElement <br>
+      &lt;body&gt; = document.body <br>
+      &lt;head&gt; = document.head
+    </code>
+
+    <p>В DOM значение <b>null</b> значит «не существует» или «нет такого узла».</p>
+
+    <h2>Дети: childNodes, firstChild, lastChild</h2>
+
+    <p>Коллекция <b>childNodes</b> содержит список всех детей, включая текстовые узлы.</p>
+
+    <p>Свойства <b>firstChild</b> и <b>lastChild</b> обеспечивают быстрый доступ к первому и последнему дочернему элементу.</p>
+
+    <h2>DOM-коллекции</h2>
+
+    <p><b>childNodes</b> похож на массив. На самом деле это не массив, а <b>коллекция</b> – особый перебираемый объект-псевдомассив.</p>
+
+    <ul>
+      <li>Для перебора коллекции мы можем использовать <b>for..of</b>.</li>
+      <li>Методы массивов не будут работать, потому что коллекция – это не массив.</li>
+    </ul>
+
+    <p><b>DOM-коллекции – только для чтения. </b></p>
+
+    <p><b>DOM-коллекции живые</b></p>
+
+    <p><b>Не используйте цикл for..in для перебора коллекций</b>. Цикл <b>for..in</b> перебирает все перечисляемые свойства.</p>
+
+    <h2>Соседи и родитель</h2>
+
+    <p>Соседи – это узлы, у которых один и тот же родитель.</p>
+
+    <code class="code-block">
+        document.body.parentNode // родиетель body = html <br><br>
+
+        document.head.nextSibling // сосед head = #text перед body<br><br>
+
+        document.body.previousSibling // предыдущий элемент body = #text перед head
+    </code>
+
+    <h2>Навигация только по элементам</h2>
+
+    <ul>
+      <li><b>children</b> – коллекция детей, которые являются элементами.</li>
+      <li><b>firstElementChild</b>, <b>lastElementChild</b> – первый и последний дочерний элемент.</li>
+      <li><b>previousElementSibling</b>, <b>nextElementSibling</b> – соседи-элементы.</li>
+      <li><b>parentElement</b> – родитель-элемент.</li>
+    </ul>
+
+    <h2>Таблицы</h2>
+
+    <ul>
+      <li><b>table.rows</b> – коллекция строк <b>&lt;tr&gt;</b> таблицы</li>
+      <li><b>table.caption/tHead/tFoot</b> – ссылки на элементы таблицы <b>&lt;caption&gt;</b>, <b>&lt;thead&gt;</b>, <b>&lt;tfoot&gt;</b>.</li>
+      <li><b>table.tBodies</b> – коллекция элементов таблицы <b>&lt;tbody&gt;</b> (по спецификации их может быть больше одного).</li>
+      <li><b>tbody.rows</b> – коллекция строк <b>&lt;tr&gt;</b> секции.</li>
+      <li><b>tr.cells</b> – коллекция <b>&lt;td&gt;</b> и <b>&lt;th&gt;</b> ячеек, находящихся внутри строки <b>&lt;tr&gt;</b>.</li>
+      <li><b>tr.sectionRowIndex</b> – номер строки <b>&lt;tr&gt;</b> в текущей секции <b>&lt;thead&gt;</b>/<b>&lt;tbody&gt;</b>/<b>&lt;tfoot&gt;</b></li>
+      <li><b>tr.rowIndex</b> – номер строки <b>&lt;tr&gt;</b> в таблице (включая все строки таблицы).</li>
+      <li><b>td.cellIndex</b> – номер ячейки в строке <b>&lt;tr&gt;</b><b>&lt;/tr&gt;</b> </li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

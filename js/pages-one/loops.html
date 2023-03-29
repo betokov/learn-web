@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loops</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Цикл</h1>
+
+    <h2>Цикл for</h2>
+
+    <code class="code-block">
+      for (начало; условие; шаг) { <br>
+        &nbsp;// ... тело цикла ... <br>
+      }
+    </code>
+
+    <p>НАЧАЛО - <b>let i = 0</b>, выполняется один раз при входе в цикл</p>
+
+    <p>УСЛОВИЕ - <b>i < 3</b>, проверяется перед каждой итерацией цикла. Если оно вычислится в <b>false</b>, цикл остановится.</p>
+
+    <p>ТЕЛО - <b>alert(i)</b>, выполняется снова и снова, пока условие вычисляется в <b>true</b>.</p>
+
+    <p>ШАГ - <b>i++</b>, выполняется после тела цикла на каждой итерации перед проверкой условия.</p>
+
+    <code class="code-block">
+      Выполнить начало <br>
+      → (Если условие == true → Выполнить тело, Выполнить шаг) <br>
+      → (Если условие == true → Выполнить тело, Выполнить шаг) <br>
+      → (Если условие == true → Выполнить тело, Выполнить шаг) <br>
+      → ...
+    </code>
+
+    <h2>Метки для break/continue</h2>
+
+    <code class="code-block">
+      outer: for (let i = 0; i < 3; i++) { <br> <br>
+
+        &nbsp;for (let j = 0; j < 3; j++) { <br><br>
+
+          &nbsp;&nbsp;let input = prompt(`Значение на координатах (${i},${j})`, ''); <br><br>
+
+          &nbsp;&nbsp;// если пустая строка или Отмена, то выйти из обоих циклов<br>
+          &nbsp;&nbsp;if (!input) break outer; // (*)<br><br>
+
+          &nbsp;&nbsp;// сделать что-нибудь со значениями...<br>
+          &nbsp;} <br>
+      } <br><br>
+
+      alert('Готово!');
+    </code>
+
+    <p>Вызовом <b>break outer</b> будет разорван внешний цикл до метки с именем <b>outer</b>.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

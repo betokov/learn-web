@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Массивы</h1>
+
+    <p>Для хранения упорядоченных коллекций существует особая структура данных, которая называется массив, <b>Array</b>.</p>
+
+    <h2>Объявление</h2>
+
+    <code class="code-block">
+      let arr = new Array();
+      let arr = [];
+    </code>
+
+    <p>Элементы массива нумеруются, начиная с нуля. Мы можем заменить элемент: <code>fruits[2] = 'Груша'; </code>.</p>
+
+    <p>В массиве могут храниться элементы любого типа. Список элементов массива, как и список свойств объекта, может оканчиваться запятой.</p>
+
+    <p>Обращение к последнему элементу массива:</p>
+
+    <code class="code-block">
+      alert(fruits[fruits.length - 1]); <br>
+      alert(fruits.at(-1)) // добавлено в язык недавно
+    </code>
+
+    <h2>Методы pop/push, shift/unshift</h2>
+
+    <div>
+      <p><b>Очередь:</b></p>
+
+      <p><img src="/img/queue.svg" alt="" width="187" height="108"></p>
+    </div>
+
+    <div>
+      <p><b>Стэк:</b></p>
+
+      <p><img src="/img/stack.svg" alt="" width="145" height="149"></p>
+    </div>
+
+    <p>Массивы в JavaScript могут работать и как очередь, и как стек. Мы можем добавлять/удалять элементы как в начало, так и в конец массива. В компьютерных науках структура данных, делающая это возможным, называется двусторонняя очередь.</p>
+
+    <code class="code-block">
+      fruits.pop() // удаляет последний элемент массива <br>
+      fruits.push("Груша") // добавляет элемент в конец массива <br>
+      fruits.shift() // удаляет первый элемент массива <br>
+      fruits.unshift("Яблоко") // добавляет первый элемент массива
+    </code>
+
+    <h2>Перебор элементов</h2>
+
+    <ol>
+      <li><b>for</b></li>
+      <li><b>for .. of</b></li>
+      <li><b>for .. in</b></li>
+    </ol>
+
+    <p>Цикл <b>for..of</b> не предоставляет доступа к номеру текущего элемента, только к его значению,</p>
+
+    <p>Технически, так как массив является объектом, можно использовать и вариант <b>for..in</b>. Скрытые недостатки этого способа:</p>
+
+    <ol>
+      <li>Цикл <b>for..in</b> выполняет перебор всех свойств объекта, а не только цифровых.</li>
+      <li>Цикл <b>for..in</b> оптимизирован под произвольные объекты, не массивы, и поэтому в 10-100 раз медленнее.</li>
+    </ol>
+
+    <h2>Немного о «length»</h2>
+
+    <p>Свойство <b>length</b> автоматически обновляется при изменении массива. Если быть точными, это не количество элементов массива, а наибольший цифровой индекс плюс один.</p>
+
+    <p>Свойстве <b>length</b> – его можно перезаписать. сли мы вручную увеличим его, ничего интересного не произойдёт. Зато, если мы уменьшим его, массив станет короче. Этот процесс необратим. Самый простой способ очистить массив – это <code>arr.length = 0;</code>.</p>
+
+    <h2>new Array()</h2>
+
+    <p>Он редко применяется, так как квадратные скобки <b>[]</b> короче. Кроме того, у него есть хитрая особенность. Если new Array вызывается с одним аргументом, который представляет собой число, он создаёт массив без элементов, но с заданной длиной.</p>
+
+    <h2>Многомерные массивы</h2>
+
+    <p>Массивы могут содержать элементы, которые тоже являются массивами. Это можно использовать для создания многомерных массивов, например, для хранения матриц</p>
+
+    <h2>toString</h2>
+
+    <code class="code-block">
+      let arr = [1, 2, 3]; <br><br>
+
+      alert( arr ); // 1,2,3 <br>
+      alert( String(arr) === '1,2,3' ); // true <br>
+      alert( [] + 1 ); // "1" <br>
+      alert( [1] + 1 ); // "11" <br>
+      alert( [1,2] + 1 ); // "1,21"
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser environment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Браузерное окружение, спецификации</h1>
+
+    <h2>Что доступно Javascript в браузерном окружении</h2>
+
+    <p><img src="/img/browser-environment.png" alt="Схема того, что доступно в браузерном окружении" width="400" height="400"></p>
+
+    <h2>DOM (Document Object Model</h2>
+
+    <p>DOM - объектная модель документа, которая представляет все содержимое страницы в виде объектов, которое можно менять.</p>
+
+    <p>Объект <code>document</code> - основная «входная точка». С его помощью мы можем что-то создавать или менять на странице.</p>
+
+    <h2>BOM (Browser Object Model)</h2>
+
+    <p>Объектная модель браузера - это дополнительные объекты, предоставляемые браузером (окружением), чтобы работать со всем, кроме документа: <code>setTimeout, alert, location, ...</code></p>
+
+    <p>Каждый HTML-тег является объектом. Вложенные теги являются «детьми» родительского элемента. Текст, который находится внутри тега, также являются объектом.</p>
+
+    <p><b>DOM</b> - это представление HTML-документа в виде дерева тегов.</p>
+
+    <p>Теги является узлами-элементами. Текст внутри элементов образует текстовые узлы.</p>
+
+    <p>Существует всего два исключения из этого правила:</p>
+
+    <ul>
+      <li>По историческим причинам пробелы и перевод строки перед тегом <b>&lt;head&gt;</b> игнорируются</li>
+      <li>Если мы записываем что-либо после закрывающего тега <b>&lt;/body&gt;</b>, браузер автоматически перемещает эту запись в конец body, поскольку спецификация HTML требует, чтобы всё содержимое было внутри <b>&lt;/body&gt;</b>. Поэтому после закрывающего тега <b>&lt;/body&gt;</b> не может быть никаких пробелов.</li>
+    </ul>
+
+    <p>Есть и некоторые другие типы узлов, кроме элементов и текстовых узлов - узел комментарий</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

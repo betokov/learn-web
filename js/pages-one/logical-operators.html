@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logical operators</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Логические операторы</h1>
+
+    <p>В JavaScript есть четыре логических оператора: <b>||</b> (ИЛИ), <b>&&</b> (И) и <b>!</b> (НЕ), <b>??</b> </p>
+
+    <h2>|| (ИЛИ)</h2>
+
+    <p>Если значение не логического типа, то оно к нему приводится в целях вычислений.</p>
+
+    <p>При присвоении значения с помощью оператора <b>||</b>:</p>
+
+    <ul>
+      <li>Вычисляет операнды слева направо.</li>
+      <li>Каждый операнд конвертирует в логическое значение. Если результат <b>true</b>, останавливается и возвращает исходное значение этого операнда.</li>
+      <li>Если все операнды являются ложными (<b>false</b>), возвращает последний из них.</li>
+    </ul>
+
+    <h2>&& (И)</h2>
+
+    <p>И «&&» находит первое ложное значение:</p>
+
+    <code class="code-block">
+      result = value1 && value2 && value3;
+    </code>
+
+    <ul>
+      <li>Вычисляет операнды слева направо.</li>
+      <li>Каждый операнд преобразует в логическое значение. Если результат <b>false</b>, останавливается и возвращает исходное значение этого операнда.</li>
+      <li>Если все операнды были истинными, возвращается последний.</li>
+    </ul>
+
+    <code class="code-block">
+      alert( 1 && 0 ); // 0 <br>
+      alert( 1 && 5 ); // 5 <br>
+      alert( 1 && 2 && null && 3 ); // null <br>
+      alert( 1 && 2 && 3 ); // 3 <br>
+      alert( null && 5 ); // null <br>
+      alert( 0 && "no matter what" ); // 0
+    </code>
+
+    <h2>! (НЕ)</h2>
+
+    <p>Оператор принимает один аргумент и выполняет следующие действия:</p>
+
+    <ol>
+      <li>Сначала приводит аргумент к логическому типу <b>true/false</b>.</li>
+      <li>Затем возвращает противоположное значение.</li>
+    </ol>
+
+    <code class="code-block">
+      alert( !true ); // false <br>
+      alert( !0 ); // true
+    </code>
+
+    <p>В частности, двойное НЕ <b>!!</b> используют для преобразования значений к логическому типу:</p>
+
+    <code class="code-block">
+      alert( !!"non-empty string" ); // true <br>
+      alert( !!null ); // false
+    </code>
+
+    <p>То есть первое НЕ преобразует значение в логическое значение и возвращает обратное, а второе НЕ снова инвертирует его. В конце мы имеем простое преобразование значения в логическое.</p>
+
+    <code class="code-block">
+      alert( Boolean("non-empty string") ); // true <br>
+      alert( Boolean(null) ); // false
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

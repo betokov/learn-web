@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Числа</h1>
+
+    <p>Внутри JavaScript число представлено в виде 64-битного формата <a class="js-link" href="https://ru.wikipedia.org/wiki/IEEE_754-1985" target="_blank">IEEE-754</a>.</p>
+
+    <h2>Способы записи числа</h2>
+
+    <code class="code-block">
+      let billion = 1e9; // 1 и 9 нулей <br><br>
+
+      let ms = 1e-6; // 1 и 6 нулей - 0.0000001
+    </code>
+
+    <h2>toString(base)</h2>
+
+    <p>Метод <b>num.toString(base)</b> возвращает строковое представление числа <b>num</b> в системе счисления <b>base</b>.</p>
+
+    <code class="code-block">
+      alert( 123456..toString(36) ); // 2n9c
+    </code>
+
+    <p>Если нам надо вызвать метод непосредственно на числе, как <b>toString</b> в примере выше, то нам надо поставить две точки <b>..</b> после числа.</p>
+
+    <h2>Округление</h2>
+
+    <ul>
+      <li><b>Math.floor</b> - округление в меньшую сторону.</li>
+      <li><b>Math.ceil</b> - округление в большую сторону.</li>
+      <li><b>Math.floor</b> - округление до ближайшего целого.</li>
+      <li><b>Math.trunc (не поддерживается в Internet Explorer)</b> - производит удаление дробной части без округления.</li>
+    </ul>
+
+    <p>Метод <b>toFixed(n)</b> округляет число до <b>n</b> знаков после запятой и возвращает строковое представление результата. Если десятичная часть короче, чем необходима, будут добавлены нули в конец строки.</p>
+
+    <h3>0.1 + 0.2 - решение</h3>
+
+    <code class="code-block">
+      let sum = 0.1 + 0.2; <br>
+      alert( +sum.toFixed(2) ); // 0.3
+    </code>
+
+    <h2>Проверка: isFinite и isNaN</h2>
+
+    <ul>
+      <li><b>isNaN(value)</b> преобразует значение в число и проверяет является ли оно NaN.</li>
+      <li><b>isFinite(value)</b> преобразует аргумент в число и возвращает <b>true</b>, если оно является обычным числом, т.е. не <b>NaN/Infinity/-Infinity</b>. Помните, что пустая строка интерпретируется как 0 во всех числовых функциях, включая <b>isFinite</b>.</li>
+    </ul>
+
+    <h2>Сравнение Object.is</h2>
+
+    <p>Существует специальный метод <b>Object.is</b>, который сравнивает значения примерно как <b>===</b>, но более надёжен в двух особых ситуациях:</p>
+
+    <ul>
+      <li>Работает с NaN: Object.is(NaN, NaN) === true.</li>
+      <li>Значения <b>0</b> и <b>-0</b> разные: <b>Object.is(0, -0) === false</b>, это редко используется, но технически эти значения разные.</li>
+    </ul>
+
+    <h2>parseInt и parseFloat</h2>
+
+    <p>Они «читают» число из строки. Если в процессе чтения возникает ошибка, они возвращают полученное до ошибки число. Функция <b>parseInt</b> возвращает целое число, а <b>parseFloat</b> возвращает число с плавающей точкой</p>
+
+    <code class="code-block">
+      alert( parseInt('100px') ); // 100 <br>
+      alert( parseFloat('12.5em') ); // 12.5 <br><br>
+
+      alert( parseInt('12.3') ); // 12, вернётся только целая часть <br>
+      alert( parseFloat('12.3.4') ); // 12.3, произойдёт остановка чтения на второй точке
+    </code>
+
+    <p>Функции <b>parseInt/parseFloat</b> вернут <b>NaN</b>, если не смогли прочитать ни одну цифру.</p>
+
+    <p>Функция <b>parseInt(str, radix)</b> имеет необязательный второй параметр. Он определяет систему счисления, таким образом parseInt может также читать строки с шестнадцатеричными числами, двоичными числами и т.д.:</p>
+
+    <h2>Другие математические функции</h2>
+
+    <p>В JavaScript встроен объект <b>Math</b>, который содержит различные математические функции и константы.</p>
+
+    <ul>
+      <li><b>Math.random()</b> - возвращает псевдослучайное число в диапазоне от 0 (включительно) до 1 (но не включая 1).</li>
+      <li><b>Math.max(a, b, c...) / Math.min(a, b, c...)</b> - возвращает наибольшее/наименьшее число из перечисленных аргументов.</li>
+      <li><b>Math.pow(n, power)</b> - возвращает число <b>n</b>, возведённое в степень <b>power</b></li>
+      <li>В объекте <b>Math</b> есть множество функций и констант, включая тригонометрические функции, подробнее можно ознакомиться в документации по объекту <a class="js-link" href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank">Math</a>.</li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Функции</h1>
+
+    <p><b>Параметр</b> – это переменная, указанная в круглых скобках в объявлении функции. <br>
+      <b>Аргумент</b> – это значение, которое передаётся функции при её вызове.</p>
+
+    <h2>Значение по умолчанию</h2>
+
+    <p>Если при вызове функции аргумент не был указан, то его значением становится <b>undefined</b>.</p>
+
+    <code class="code-block">
+      function showMessage(from, text = "текст не добавлен") { <br>
+        &nbsp;alert( from + ": " + text ); <br>
+      } <br><br>
+
+      showMessage("Аня"); // Аня: текст не добавлен
+    </code>
+
+    <h2>Выбор имени функции</h2>
+
+    <p>Функция – это действие. Поэтому имя функции обычно является глаголом. Как правило, используются глагольные префиксы, обозначающие общий характер действия, после которых следует уточнение.</p>
+
+    <p>Например, функция начинающиеся с:</p>
+
+    <ul>
+      <li><b>«get…»</b> – возвращают значение,</li>
+      <li><b>«calc…»</b> – что-то вычисляют,</li>
+      <li><b>«create…»</b> – что-то создают,</li>
+      <li><b>«check…»</b> – что-то проверяют и возвращают логическое значение, и т.д.</li>
+    </ul>
+
+    <code class="code-block">
+      showMessage(..)     // показывает сообщение <br>
+      getAge(..)          // возвращает возраст (получая его каким-то образом) <br>
+      calcSum(..)         // вычисляет сумму и возвращает результат <br>
+      createForm(..)      // создаёт форму (и обычно возвращает её) <br>
+      checkPermission(..) // проверяет доступ, возвращая true/false
+    </code>
+
+    <p>Существуют 2 способа объявления функции:</p>
+
+    <ul>
+      <li><b><i>Function Declaration</i></b> (Объявление Функции)</li>
+      <li><b><i>Function Expression</i></b> (Функциональное Выражение)</li>
+    </ul>
+
+    <h2>Function Expression в сравнении с Function Declaration</h2>
+
+    <ul>
+      <li><b><i>Function Expression</i></b> создаётся, когда выполнение доходит до него, и затем уже может использоваться. <br> <b><i>Function Declaration</i></b> может быть вызвана раньше, чем она объявлена, т.к. когда движок JavaScript готовится выполнять скрипт или блок кода, прежде всего он ищет в нём Function Declaration и создаёт все такие функции.</li>
+
+      <li><b><i>Function Declaration</i></b> в строгом режиме имеет блочную область видимости.</li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

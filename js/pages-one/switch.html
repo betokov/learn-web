@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Конструкция «switch»</h1>
+
+    <p>Проверка совпадения выражения a с каждым выражением в case выполняется по правилам алгоритма <b>===</b>.</p>
+
+    <code class="code-block">
+      switch(x) {<br>
+        &nbsp;case 'value1':  // if (x === 'value1') <br>
+        &nbsp;&nbsp;... <br>
+        &nbsp;&nbsp;[break] <br> <br>
+
+        &nbsp;case 'value2':  // if (x === 'value2') <br>
+        &nbsp;&nbsp;... <br>
+        &nbsp;&nbsp;[break] <br><br>
+
+        &nbsp;default: <br>
+        &nbsp;&nbsp;... <br>
+        &nbsp;[break] <br>
+      }
+    </code>
+
+    <p>Однако может оказаться, что для ваших целей больше подходит равенство с преобразованием типов, чтобы включить его, необходимо вместо параметра <b>a</b> поставить <b>true</b>:</p>
+
+    <code class="code-block">
+      let a = "42"; <br><br>
+
+      switch (true) { <br>
+        &nbsp;case a == 10: <br>
+        &nbsp;&nbsp;console.log("10 or '10'") <br>
+        &nbsp;&nbsp;break <br> <br>
+
+        &nbsp;case a == 42: <br>
+        &nbsp;&nbsp;console.log("42 or '42'") <br>
+        &nbsp;&nbsp;break <br><br>
+
+        &nbsp;default: <br>
+        &nbsp;&nbsp;// сюда управление никогда не передается <br>
+      }
+    </code>
+
+    <p>Такое решение работает, потому что секция case может содержать любое выражение (а не только простые значения); результат этого выражения будет строго сравниваться с проверяемым условием (<b>true</b>). Так как <b>a == 42</b> дает <b>true</b>, совпадение будет успешно обнаружено.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

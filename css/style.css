@@ -1,0 +1,13 @@
+h6 {
+  position: relative
+}
+
+h6::before {
+
+  content: attr(data-display);
+
+}
+
+h1 {
+  text-align: center;
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Structure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Структура языка</h1>
+
+    <h2>Инструкции</h2>
+
+    <p>Инструкции – это синтаксические конструкции и команды, которые выполняют действия. Код на JavaScript — это набор инструкций, которые, как правило, отделяются друг от друга символом <b>;</b>.</p>
+
+    <h2>Точка с запятой</h2>
+
+    <p>Точки с запятой в JavaScript не обязательны. </p>
+
+    <p>Почему же JavaScript не требует строгого использования точки с запятой? Потому, что он сам виртуально добавляет их в нужные места. Процесс, который делает это, называется <b>автоматической вставкой точки с запятой (Automatic Semicolon Insertion (ASI)).</b></p>
+
+    <p>Принцип этой функции состоит в том, чтобы обеспечить некоторую снисходительность при оценке синтаксиса программы JavaScript путем концептуальной вставки пропущенных точек с запятой. Концептуально, так как программа успешно выполняет синтаксический анализ на основе этого правила, а не фактически изменяет код и добавляет точки с запятой.</p>
+
+    <p>В большинстве случаев точку с запятой можно не ставить, если есть переход на новую строку.</p>
+
+    <code class="code-block">
+      alert('Привет') <br>
+      alert('Мир')
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      var a = 1 <br>
+      var b = 2 <br>
+      var c = 3
+    </code>
+
+    <h4>Правила автоматической вставки точки с запятой в JavaScript</h4>
+
+    <ul>
+      <li>Следующая строка начинается с кода, который прерывает текущий (код может появляться на нескольких строках);</li>
+      <li>Следующая строка начинается с фигурной скобки }, закрывающей текущий блок;</li>
+      <li>Когда достигнут конец файла исходного кода;</li>
+      <li>Если встречается <b>return</b> на отдельной строке;</li>
+      <li>Если встречается <b>break</b> на отдельной строке;</li>
+      <li>Если встречается <b>continue</b> на отдельной строке;</li>
+      <li>Если встречается <b>throw</b> на отдельной строке.</li>
+    </ul>
+
+    <h4>Примеры кода, который делает не то, что вы ожидаете</h4>
+    <p><b>Пример 1:</b></p>
+
+    <code class="code-block">
+      const hi = 'Привет' <br>
+      const name = 'Петя' <br>
+      const hiYou = hi + ', ' + name <br><br>
+
+      ['a', 'b', 'c'].forEach((letter) => console.log(letter))
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      const hi = 'Привет' <br>
+      const name = 'Петя' <br>
+      const hiYou = hi + ', ' + name['a', 'b', 'c'].forEach((letter) => console.log(letter))
+    </code>
+
+    <p><b>Пример 2:</b></p>
+
+    <code class="code-block">
+      const a = 1 <br>
+      const b = 2 <br>
+      const c = a + b <br>
+      (a + b).toString()
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      const a = 1 <br>
+      const b = 2 <br>
+      const c = a + b(a + b).toString()
+    </code>
+
+    <p><b>Пример 3:</b></p>
+
+    <code class="code-block">
+      var a = function() { <br>
+        &nbsp;var b = 'ответ' <br>
+        &nbsp;return <br>
+        &nbsp;{ <br>
+        &nbsp;&nbsp;answer: b <br>
+        &nbsp;} <br>
+      } <br>
+      console.log(a());
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      return;<br>
+      {<br>
+        &nbsp;answer: b <br>
+      }
+    </code>
+
+    <p><b>Пример 4:</b></p>
+
+    <code class="code-block">
+      1 + 1 <br>
+      -1 + 1 === 0 ? console.log(0) : console.log(2)
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      1 + 1 -1 + 1 === 0 ? console.log(0) : console.log(2)
+    </code>
+
+    <p><b>Пример 5:</b></p>
+
+    <code class="code-block">
+      var a <br>
+      b = 2; <br><br>
+
+      console.log(a);<br>
+      console.log(b);
+    </code>
+
+    <br>
+
+    <code class="code-block">
+      var a; <br>
+      b = 2; <br><br>
+
+      console.log(a);<br>
+      console.log(b);
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

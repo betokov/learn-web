@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array methods</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Методы массивов</h1>
+
+    <h2>splice</h2>
+
+    <code class="code-block">
+      arr.splice(index[, deleteCount, elem1, ..., elemN])
+    </code>
+
+    <p>Он начинает с позиции <b>index</b>, удаляет <b>deleteCount</b> элементов и вставляет <b>elem1, ..., elemN</b> на их место. Возвращает массив из удалённых элементов.</p>
+
+    <p>Метод <b>splice</b> также может вставлять элементы без удаления, для этого достаточно установить <b>deleteCount</b> в <b>0</b></p>
+
+    <p>В этом и в других методах массива допускается использование отрицательного индекса.</p>
+
+    <h2>slice (создает новый массив)</h2>
+
+    <code class="code-block">
+      arr.slice([start], [end])
+    </code>
+
+    <p>Он возвращает новый массив, в который копирует элементы, начиная с индекса <b>start</b> и до end (не включая <b>end</b>). Оба индекса <b>start</b> и <b>end</b> могут быть отрицательными. В таком случае отсчёт будет осуществляться с конца массива.</p>
+
+    <p>Это похоже на строковый метод <b>str.slice</b>, но вместо подстрок возвращает подмассивы.</p>
+
+    <p>Можно вызвать <b>slice</b> и вообще без аргументов: <b>arr.slice()</b> создаёт копию массива <b>arr</b>.</p>
+
+    <h2>concat (создает новый массив)</h2>
+
+    <p>Метод <b>arr.concat</b> создаёт новый массив, в который копирует данные из других массивов и дополнительные значения.</p>
+
+    <code class="code-block">
+      arr.concat(arg1, arg2...)
+    </code>
+
+    <p>Он принимает любое количество аргументов, которые могут быть как массивами, так и простыми значениями.</p>
+
+    <p>Обычно он копирует только элементы из массивов. Другие объекты, даже если они выглядят как массивы, добавляются как есть:</p>
+
+    <code class="code-block">
+      let arr = [1, 2]; <br><br>
+
+      let arrayLike = { <br>
+        &nbsp;0: "что-то", <br>
+        &nbsp;length: 1 <br>
+      }; <br><br>
+
+      console.log( arr.concat(arrayLike) ); // [1, 2, { 0: "что-то", length: 1 }]
+    </code>
+
+    <p>…Но если массивоподобный объект имеет специальное свойство <b>Symbol.isConcatSpreadable</b>, то он обрабатывается как массив, с помощью <b>concat</b>: вместо него добавляются его элементы:</p>
+
+    <code class="code-block">
+      let arr = [1, 2]; <br><br>
+
+      let arrayLike = { <br>
+        &nbsp;0: "что-то", <br>
+        &nbsp;1: "ещё", <br>
+        &nbsp;[Symbol.isConcatSpreadable]: true, <br>
+        &nbsp;length: 2 <br>
+      }; <br><br>
+
+      alert( arr.concat(arrayLike) ); // 1,2,что-то,ещё
+    </code>
+
+    <h2>Перебор: forEach</h2>
+
+    <p>Метод <b>arr.forEach</b> позволяет запускать функцию для каждого элемента массива.</p>
+
+    <code class="code-block">
+      arr.forEach(function(item, index, array) { <br>
+        &nbsp;// ... делать что-то с item <br>
+      });
+    </code>
+
+    <p>Результат функции (если она вообще что-то возвращает) отбрасывается и игнорируется.</p>
+
+    <h2>Поиск в массиве</h2>
+
+    <h3>indexOf/lastIndexOf и includes</h3>
+
+    <p>Методы <b>arr.indexOf</b>, <b>arr.lastIndexOf</b> и <b>arr.includes</b> имеют одинаковый синтаксис и делают по сути то же самое, что и их строковые аналоги, но работают с элементами вместо символов.</p>
+
+    <p>Методы используют строгое сравнение <b>===</b>. Таким образом, если мы ищем <b>false</b>, он находит именно <b>false</b>, а не ноль.</p>
+
+    <p>Очень незначительным отличием <b>includes</b> является то, что он правильно обрабатывает <b>NaN</b> в отличие от <b>indexOf/lastIndexOf</b></p>
+
+    <h2>find и findIndex</h2>
+
+    <code class="code-block">
+      let result = arr.find(function(item, index, array) { <br>
+        &nbsp;// если true - возвращается текущий элемент и перебор прерывается <br>
+        &nbsp;// если все итерации оказались ложными, возвращается undefined <br>
+      });
+    </code>
+
+    <p>Представьте, что у нас есть массив объектов. Как нам найти объект с определённым условием?</p>
+
+    <code class="code-block">
+      let users = [ <br>
+        &nbsp;{id: 1, name: "Вася"}, <br>
+        &nbsp;{id: 2, name: "Петя"}, <br>
+        &nbsp;{id: 3, name: "Маша"} <br>
+      ]; <br><br>
+
+    let user = users.find(item => item.id == 1); <br><br>
+
+    console.log(user); // {id: 1, name: "Вася"}
+    </code>
+
+    <h2>filter</h2>
+
+    <p>На тот случай, если найденных элементов может быть много, предусмотрен метод <b>arr.filter(fn)</b>.</p>
+
+    <code class="code-block">
+      let results = arr.filter(function(item, index, array) { <br>
+        &nbsp;// если true - элемент добавляется к результату, и перебор продолжается <br>
+        &nbsp;// возвращается пустой массив в случае, если ничего не найдено <br>
+      });
+    </code>
+
+    <h2>Преобразование массива</h2>
+
+    <h3>map (создает новый массив)</h3>
+
+    <p>Он вызывает функцию для каждого элемента массива и возвращает массив результатов выполнения этой функции.</p>
+
+    <h3>sort(fn)</h3>
+
+    <p>Сортировка по возрастанию:</p>
+
+    <code class="code-block">arr.sort( (a, b) => a - b );</code>
+
+    <p>Сортировка по убыванию:</p>
+
+    <code class="code-block">arr.sort( (a, b) => b - a );</code>
+
+    <h3>reverse</h3>
+
+    <p>Метод <b>arr.reverse</b> меняет порядок элементов в <b>arr</b> на обратный.</p>
+
+    <h3>split и join</h3>
+
+    <p>Метод <b>str.split(delim)</b> разбивает строку на массив по заданному разделителю <b>delim</b>.</p>
+
+    <p>Вызов <b>arr.join(glue)</b> создаёт строку из элементов <b>arr</b>, вставляя <b>glue</b> между ними.</p>
+
+    <h3>reduce/reduceRight</h3>
+
+    <p>Методы <b>arr.reduce</b> и <b>arr.reduceRight</b> используются для вычисления какого-нибудь единого значения на основе всего массива.</p>
+
+    <code class="code-block">
+      let value = arr.reduce(function(accumulator, item, index, array) { <br>
+        &nbsp;// ... <br>
+      }, [initial]);
+    </code>
+
+    <p>Функция применяется по очереди ко всем элементам массива и «переносит» свой результат на следующий вызов.</p>
+
+    <ul>
+      <li><b>accumulator</b> – результат предыдущего вызова этой функции, равен <b>initial</b> при первом вызове (если передан bodyinitial),</li>
+      <li><b>item</b> – очередной элемент массива,</li>
+      <li><b>index</b> – его индекс,</li>
+      <li><b>array</b> – сам массив.</li>
+    </ul>
+
+    <p>Метод <b>arr.reduceRight</b> работает аналогично, но проходит по массиву справа налево.</p>
+
+    <h2>Array.isArray</h2>
+
+    <p>Проверяет массив или нет</p>
+
+    <code class="code-block">
+      alert(Array.isArray({})); // false <br><br>
+
+      alert(Array.isArray([])); // true
+    </code>
+
+    <h2>arr.some(fn)/arr.every(fn)</h2>
+
+    <p>Эти методы ведут себя примерно так же, как операторы <b>||</b> и <b>&&</b>: если fn возвращает истинное значение, <b>arr.some()</b> немедленно возвращает <b>true</b> и останавливает перебор остальных элементов; если fn возвращает ложное значение, <b>arr.every()</b> немедленно возвращает <b>false</b> и также прекращает перебор остальных элементов.</p>
+
+    <h2>arr.fill(value, start, end)</h2>
+
+    <p>Заполняет массив повторяющимися <b>value</b>, начиная с индекса <b>start</b> до <b>end</b>.</p>
+
+    <code class="code-block">
+      [1, 2, 3, 4, 5].fill(function(0, 0, 3)); //[0, 0, 0, 4, 5]
+    </code>
+
+    <h2>arr.flat(depth)/arr.flatMap(fn)</h2>
+
+    <p>Создаёт новый плоский массив из многомерного массива.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

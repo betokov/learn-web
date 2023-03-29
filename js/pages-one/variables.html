@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Переменные</h1>
+
+    <h2>Переменная</h2>
+
+    <p>Переменная – это «именованное хранилище» для данных.</p>
+
+    <p><i>Способы объявления переменных:</i></p>
+
+    <ul>
+      <li><b>let</b></li>
+      <li><b>const</b></li>
+      <li><b>var</b></li>
+    </ul>
+
+    <p>Различия между <b>var</b> и <b>let</b>:</p>
+
+    <ul>
+      <li>Область видимости переменных <b>var</b> ограничивается либо функцией, либо, если переменная глобальная, то скриптом. Такие переменные доступны за пределами блока. Это происходит потому, что на заре развития JavaScript блоки кода не имели лексического окружения.</li>
+
+      <li><b>«var»</b> допускает повторное объявление</li>
+
+      <li><b>«var»</b> обрабатываются в начале запуска функции. Благодаря <b>"hoisting"</b> (всплытие, поднятие) все объяления <b>var</b> всплывают в самый верх функции. Объявления переменных «всплывают», но присваивания значений – нет. Это означает, что до присвоения переменной значение будет иметь значение <b>undefined</b>.</li>
+    </ul>
+
+    <h2>Имена переменных</h2>
+
+    <p>В JavaScript есть два ограничения, касающиеся имён переменных:</p>
+
+    <ol>
+      <li>Имя переменной должно содержать только буквы, цифры или символы $ и _.</li>
+      <li>Первый символ не должен быть цифрой.</li>
+    </ol>
+
+    <p>Тонкости значений в переменных</p>
+
+    <ul>
+      <li>Нельзя отделять имена переменных через "-" (my-name)</li>
+      <li>Переменные с именами <b>apple</b> и <b>APPLE</b> – это две разные переменные.</li>
+      <li>Нелатинские буквы разрешены, но не рекомендуются (我)</li>
+      <li>Нельзя использовать зарезервированные слова</li>
+    </ul>
+
+    <h2>Зарезервированные слова</h2>
+
+    <p>
+      <code class="reserve">break, case, class, catch, continue, debugger, default, delete, do, else, export, extends,
+        finally, for, function, if, import, in, instaceof, let, new, return, super, switch, this, throw, try, typeof,
+        var void, while, with, yield</code>
+    </p>
+
+    <h2>Зарезервированные слова на будущее</h2>
+
+    <p>
+      <code>enum, await</code>
+    </p>
+
+    <h2>Зарезервированные слова в non-strict режиме</h2>
+
+    <p>
+      <code>implements, package, protected, static, interface, private, public</code>
+    </p>
+
+    <h2>Придумывать правильные имена переменным</h2>
+
+    <p>Название переменной должно иметь ясный и понятный смысл, говорить о том, какие данные в ней хранятся. Максимально желательная длина названия переменных 3 слова.</p>
+
+    <p><i>Общепринятые подходы:</i></p>
+
+    <ul>
+      <li>значение — существительное: <b>cat</b>, <b>dog</b>;</li>
+      <li>массив — существительное в множественном числе: <b>cats</b>, <b>dogs</b>;</li>
+      <li>функция — глагол: <b>download</b>, <b>update</b>;</li>
+      <li>класс — существительное с заглавной буквой: <b>Cat</b>, <b>Dog</b>;</li>
+      <li>константа — всё имя пишется заглавными буквами в стиле snake_case: <b>MAXIMUM_FOOD</b>, <b>LIMIT_X</b>;</li>
+      <li>обработчик — имя описывает событие, по которому он вызывается. Как правило, содержит префикс <b>on</b> или постфикс <b>Handler</b>: <b>onButtonClick</b>, <b>formSendHandler</b>.</li>
+    </ul>
+
+    <p>Стили именования переменных:</p>
+    <ul>
+      <li><b>camelCase</b></li>
+      <li><b>PascalCase</b></li>
+      <li><b>snake_case</b></li>
+      <li><b>SCREAMING_SNAKE_CASE</b></li>
+      <li><b>kebab-case</b></li>
+      <li><b>TRAIN-CASE</b></li>
+      <li><b>Train-Case</b></li>
+      <li><b>flatcase - #stayhome</b></li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

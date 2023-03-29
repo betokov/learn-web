@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object copy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Копирование объектов</h1>
+
+    <h2>Клонирование и объединение, Object.assign</h2>
+
+    <p>Встроенного метода для клонирования объекта нет. Но можно воспользоваться циклом <b>«for .. in»</b> предварительно создав новый пустой объект и воспроизвести структуру существующего, перебрав его свойства и скопировав их на примитивном уровне.</p>
+
+    <p>Также мы можем использовать для этого метод <b>Object.assign</b>.</p>
+
+    <code class="code-block">
+      Object.assign(dest, [src1, src2, src3...])
+    </code>
+
+    <p>Мы можем использовать его для объединения нескольких объектов в один:</p>
+
+    <code class="code-block">
+      let user = { name: "John" }; <br><br>
+
+      let permissions1 = { canView: true }; <br>
+      let permissions2 = { canEdit: true }; <br><br>
+
+      // копируем все свойства из permissions1 и permissions2 в user
+      Object.assign(user, permissions1, permissions2); // { name: "John", canView: true, canEdit: true }
+    </code>
+
+    <p>Если скопированное имя свойства уже существует, оно будет перезаписано.</p>
+
+    <p>Мы также можем использовать <b>Object.assign</b> для замены цикла <b>for..in</b> для простого клонирования:</p>
+
+    <code class="code-block">
+      let clone = Object.assign({}, user);
+    </code>
+
+    <h2>Вложенное клонирование</h2>
+
+    <p>При клонировании объекта, если в объекте клонирования есть свойство у которого значение «объект», то это свойство будет одинаковым (скопированным по ссылке).</p>
+
+    <p>Чтобы исправить это, мы должны использовать цикл клонирования, который проверяет каждое значение <b>user[key]</b> и, если это объект, тогда также копирует его структуру. Это называется <b>«глубоким клонированием»</b>.</p>
+
+    <p>Мы можем реализовать глубокое клонирование, используя рекурсию. Или, чтобы не изобретать велосипед заново, возьмите готовую реализацию, например <a class="js-link" href="https://lodash.com/docs#cloneDeep" target="_blank">_.cloneDeep(obj)</a> из библиотеки JavaScript <a class="js-link" href="https://lodash.com/" target="_blank">lodash</a>.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

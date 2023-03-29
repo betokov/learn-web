@@ -1,0 +1,56 @@
+.reserve {
+  display: block;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.javascript-main__title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.js-list {
+  list-style-image: url("../img/rocket.svg");
+  padding-left: 30px;
+  margin-top: 40px;
+}
+
+.js-list li {
+  margin-bottom: 40px;
+  padding-left: 15px;
+}
+
+.js-list li:hover::marker {
+  content: url("../img/rocket.svg");
+}
+
+.js-link {
+  padding: 5px 20px;
+}
+
+.javascript-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .javascript-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

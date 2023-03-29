@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Searching: getElement*, querySelector*</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Поиск: getElement*, querySelector*</h1>
+
+    <h2>document.getElementById или просто id</h2>
+
+    <code class="code-block">
+      document.getElementById("id").style.color = "red" <br>
+      id.style.color = "red"
+    </code>
+
+    <p>…Но это только если мы не объявили в JavaScript переменную с таким же именем. Но крайне не рекомендуется делать такой поиск.</p>
+
+    <h2>querySelectorAll</h2>
+
+    <code class="code-block">
+      document.querySelectorAll('ul > li:last-child');
+    </code>
+
+    <p>Псевдоклассы тоже работают</p>
+
+    <h2>matches</h2>
+
+    <p>Метод <b>elem.matches(css)</b> ничего не ищет, а проверяет, удовлетворяет ли elem CSS-селектору, и возвращает <b>true</b> или <b>false</b>.</p>
+
+    <h2>closest</h2>
+
+    <p>Метод <b>elem.closest(css)</b> ищет ближайшего предка, который соответствует CSS-селектору. Сам элемент также включается в поиск.</p>
+
+    <p>Метод возвращает либо предка, либо <b>null</b>, если такой элемент не найден.</p>
+
+    <h2>getElementsBy*</h2>
+
+    <ul>
+      <li><b>elem.getElementsByTagName(tag)</b> ищет элементы с данным тегом и возвращает их коллекцию. Передав "*" вместо тега, можно получить всех потомков.</li>
+      <li><b>elem.getElementsByClassName(className)</b> возвращает элементы, которые имеют данный CSS-класс.</li>
+      <li><b>document.getElementsByName(name)</b> возвращает элементы с заданным атрибутом name. Очень редко используется.</li>
+    </ul>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

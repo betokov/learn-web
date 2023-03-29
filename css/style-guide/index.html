@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main class="style-guide">
+    <h1 class="style-guide__title">Гайд по стилям</h1>
+
+    <h2>Автоматизация проверки кода</h2>
+
+    <ul>
+      <li>Для поддержания единообразия в коде используйте <b>EditorConfig</b>.</li>
+      <li>Для HTML используйте <b>linthtml</b>.</li>
+      <li>Для стилей <b>Stylelint</b>.</li>
+    </ul>
+
+    <h2>Editor Config</h2>
+
+    <p><a href="https://editorconfig.org/" target="_blank">Сайт</a>, где прописан полный список параметорв для editor config.</p>
+
+    <p>Для того, чтобы VSCODE знал какие нужны отступы и размеры отступов и т.д, для разных файловых расширений, нужно создать в корне проекта файл <b>.editorconfig</b></p>
+
+    <code class="code-block">
+      root = true // настройка где лежит editor config <br><br>
+
+      [*] // Для всех расширений файлов<br>
+      end_of_line = lf // конец строки<br>
+      insert_final_newline = true // вставлять ли последнюю строку<br>
+      trim_trailing_whitespace = true // удалять ли пробелы в конце строки<br><br>
+
+      [*.{js,py}] // Только для файлов с расширением js, py<br>
+      charset = utf-8 // кодировка<br><br>
+
+      [*.py]<br>
+      indent_style = space // тип отступа<br>
+      indent_size = 4 // размер отступа<br>
+      tab_width = 4 // ширина таба если используем таб<br><br>
+
+      [Makefile]<br>
+      indent_style = tab // тип отступа<br><br>
+
+      [lib/**.js]<br>
+      indent_style = space<br>
+      indent_size = 2<br><br>
+
+      [{package.json,.travis.yml}]<br>
+      indent_style = space<br>
+      indent_size = 2
+    </code>
+
+    <p>Если вы работает в команде мало положить его в корень проекта. Нужно убедиться что он есть у всех, кто разрабатывает проект. Можно установить через <b>npm</b> пакет ( <b>editorconfig-checker</b>) , который проверяет соответствуют ли файлы данным правилам которые прописаны в конфиге.</p>
+
+    <p>Также можно добавить автотесты при заливке на гитхаб, так называемые <b>«git actions»</b>.</p>
+
+    <h2>Доступное скрытие</h2>
+
+    <p>Контент скрыт утилитарным классом <b>visually-hidden</b>, чтобы он был доступен для скринридеров и поисковиков.</p>
+
+    <code class="code-block">
+      .visually-hidden { <br>
+        &nbsp;position: absolute; <br>
+        &nbsp;width: 1px; <br>
+        &nbsp;height: 1px; <br>
+        &nbsp;margin: -1px; <br>
+        &nbsp;border: 0; <br>
+        &nbsp;padding: 0; <br>
+        &nbsp;white-space: nowrap; <br>
+        &nbsp;clip-path: inset(100%); <br>
+        &nbsp;clip: rect(0 0 0 0); <br>
+        &nbsp;overflow: hidden; <br>
+      } <br><br>
+
+      &lt;h2 class="visually-hidden"&gt;Заголовок&lt;/h2&gt;
+    </code>
+
+    <h2>Порядок слов</h2>
+
+    <p>Объявления логически связанных свойств сгруппированы в следующем порядке:</p>
+
+    <ol>
+      <li>Позиционирование</li>
+      <li>Блочная модель</li>
+      <li>Типографика</li>
+      <li>Оформление</li>
+      <li>Анимация</li>
+      <li>Разное</li>
+    </ol>
+
+    <code class="code-block">
+      .declaration-order { <br>
+        &nbsp;/* Позиционирование */<br>
+        &nbsp;position: absolute;<br>
+        &nbsp;top: 0;<br>
+        &nbsp;right: 0;<br>
+        &nbsp;bottom: 0;<br>
+        &nbsp;left: 0;<br>
+        &nbsp;z-index: 100;<br><br>
+
+        &nbsp;/* Блочная модель */<br>
+        &nbsp;display: block;<br>
+        &nbsp;float: right;<br>
+        &nbsp;width: 100px;<br>
+        &nbsp;height: 100px;<br>
+        &nbsp;margin: 10px;<br>
+        &nbsp;padding: 10px;<br><br>
+
+        &nbsp;/* Типографика */<br>
+        &nbsp;font-family: "Arial", sans-serif;<br>
+        &nbsp;font-style: normal;<br>
+        &nbsp;font-size: 13px;<br>
+        &nbsp;line-height: 20px;<br>
+        &nbsp;font-weight: 700;<br>
+        &nbsp;text-align: center;<br>
+        &nbsp;color: #333333;<br><br>
+
+        &nbsp;/* Оформление */<br>
+        &nbsp;background-color: #f5f5f5;<br>
+        &nbsp;border: 1px solid #e5e5e5;<br>
+        &nbsp;border-radius: 3px;<br>
+        &nbsp;opacity: 1;<br><br>
+
+        &nbsp;/* Анимация */<br>
+        &nbsp;transition: color 1s;<br><br>
+
+        &nbsp;/* Разное */<br>
+        &nbsp;will-change: auto;<br>
+      }
+    </code>
+
+  </main>
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

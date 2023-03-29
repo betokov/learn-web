@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data types</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Типы данных</h1>
+
+    <p>В JavaScript есть 8 основных типов данных:</p>
+
+    <ol>
+      <li><b>number</b> для любых чисел: целочисленных или чисел с плавающей точкой; целочисленные значения ограничены диапазоном <b>±(2**53-1) - (9007199254740991)</b>.</li>
+      <li><b>bigint</b> для целых чисел произвольной длины.</li>
+      <li><b>string</b> для строк.</li>
+      <li><b>boolean</b> логический тип.</li>
+      <li><b>null</b> для неизвестных значений.</li>
+      <li><b>undefined</b> для неприсвоенных.</li>
+      <li><b>symbol</b> для уникальных идентификаторов.</li>
+      <li><b>object</b>.</li>
+    </ol>
+
+    <h2>Число</h2>
+
+    <p>Числовой тип данных <b>(number)</b> представляет как целочисленные значения, так и числа с плавающей точкой.</p>
+
+    <p>Кроме обычных чисел, существуют так называемые «специальные числовые значения», которые относятся к этому типу данных: <b>Infinity</b>, <b>-Infinity</b> и <b>NaN</b>.</p>
+
+    <p><b>NaN</b> означает вычислительную ошибку. Это результат неправильной или неопределённой математической операции. Любая математическая операция с <b>NaN</b> возвращает <b>NaN</b>, кроме <b>NaN ** 0</b> равно <b>1</b>.</p>
+
+    <h2>BigInt</h2>
+
+    <p><b>BigInt</b> – это специальный числовой тип, который предоставляет возможность работать с целыми числами произвольной длины. Чтобы создать значение типа <b>BigInt</b>, необходимо добавить n в конец числового литерала. В данный момент <b>BigInt</b> поддерживается только в браузерах Firefox, Chrome, Edge и Safari, но не поддерживается в IE.</p>
+
+    <p>В математических операциях мы не можем смешивать <b>bigint</b> и обычные числа. Мы должны явно их конвертировать: используя либо <b>BigInt()</b>, либо <b>Number()</b>.</p>
+
+    <h2>Строки</h2>
+
+    <p>Строка (<b>string</b>) в JavaScript должна быть заключена в кавычки.</p>
+
+    <p>В JavaScript существует три типа кавычек.</p>
+    <ul>
+      <li>Двойные кавычки</li>
+      <li>Одинарные кавычки</li>
+      <li>Обратные кавычки</li>
+    </ul>
+
+    <p>Используя обратные кавычки мы можем вставлять произвольные выражения, обернув их в <b>${...}</b>, также мы можем писать в несколько строк.</p>
+
+    <h3>Спецсимволы</h3>
+
+    <p>Многострочные строки также можно создавать с помощью одинарных и двойных кавычек, используя так называемый «символ перевода строки», который записывается как <b>\n</b>. Знак <b>\</b> назвается «символом экранирования».</p>
+
+    <table>
+      <tr>
+        <th>Символ</th>
+        <th>Описание</th>
+      </tr>
+
+      <tr>
+        <td><b>\n</b></td>
+        <td>Перевод строки</td>
+      </tr>
+
+      <tr>
+        <td><b>\r</b></td>
+        <td>В текстовых файлах Windows для перевода строки используется комбинация символов <b>\r\n</b>, а на других ОС это просто <b>\n</b>. Это так по историческим причинам, ПО под Windows обычно понимает и просто <b>\n</b>.</td>
+      </tr>
+
+      <tr>
+        <td><b>\'</b>, <b>\"</b></td>
+        <td>Кавычки</td>
+      </tr>
+
+      <tr>
+        <td><b>\\</b></td>
+        <td>Обратный слеш</td>
+      </tr>
+
+      <tr>
+        <td><b>\t</b></td>
+        <td>Знак табуляции</td>
+      </tr>
+    </table>
+
+    <br>
+
+    <h2>Оператор typeof</h2>
+
+    <p>Оператор <b>typeof</b> возвращает тип аргумента. <b>typeof</b> возвращает <b>string</b>! (<b>typeof typeof {}</b>)</p>
+
+    <code class="code-block">
+      typeof 42 === "number" //true
+    </code>
+
+    <ul>
+      <li>Синтаксис оператора: <b>typeof x</b>.</li>
+      <li>Синтаксис функции: <b>typeof(x)</b>.</li>
+    </ul>
+
+    <p><b>type of null // object</b> - это официально признанная ошибка в <b>typeof</b>, ведущая начало с времён создания JavaScript и сохранённая для совместимости. Конечно, <b>null</b> не является объектом. Это специальное значение с отдельным типом.</p>
+
+    <h3>typeof для необъявленных переменных</h3>
+
+    <p>Для того чтобы избежать ошибок <b>ReferenceError</b> для глобальных переменных полезно использовать оператор <b>typeof</b>:</p>
+
+    <code class="code-block">
+      // Безопасная проверка существования переменной <br>
+      if (typeof DEBUG !== "undefined") { <br>
+       &nbsp;console.log("Debugging is starting") <br>
+      }
+    </code>
+
+    <p>Если мы проводим проверку для стороннего API, возможно, также будет полезно не выводить ошибку:</p>
+
+    <code class="code-block">
+      if (typeof atob === "undefined") { <br>
+        &nbsp;atob = function() { /*..*/ } <br>
+      }
+    </code>
+
+    <p>Также существует паттерн проектирования, под названием «Внедрение зависимостей». Функция требует явной передачи зависимости:</p>
+
+    <code class="code-block">
+      function doSomethingCool(FeatureXYZ) { <br>
+        &nbsp;var helper = FeatureXYZ || function() { /* Действия по умолчанию */ } <br><br>
+
+        &nbsp;var val = helper() <br>
+      }
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>
