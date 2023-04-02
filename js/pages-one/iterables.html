@@ -8,7 +8,8 @@
   <title>Iterables</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="../style.css">
 </head>
@@ -25,14 +26,119 @@
   <main>
     <h1 class="javascript-main__title">Перебираемые объекты</h1>
 
-    <h2>use strict</h2>
+    <h2>Symbol.iterator</h2>
 
+    <code class="code-block">
+      let range = { <br>
+      &nbsp;&nbsp;from: 1, <br>
+      &nbsp;&nbsp;to: 5 <br>
+      };
+    </code>
 
-    <br><br><a class="link-back"  href="../index.html">Назад</a>
+    <p>Чтобы сделать <b>range</b> итерируемым (и позволить <b>for..of </b> работать с ним), нам нужно добавить в объект
+      метод с именем <b>Symbol.iterator</b> (специальный встроенный <b>Symbol</b>, созданный как раз для этого).</p>
+
+    <ul>
+      <li>Когда цикл <b>for..of</b> запускается, он вызывает этот метод один раз (или выдаёт ошибку, если метод не
+        найден). Этот метод должен вернуть итератор – объект с методом <b>next</b>.</li>
+
+      <li>Дальше <b>for..of</b> работает только с этим возвращённым объектом.</li>
+
+      <li>Когда <b>for..of</b> хочет получить следующее значение, он вызывает метод <b>next()</b> этого объекта.</li>
+
+      <li>Результат вызова <b>next()</b> должен иметь вид <code>{done: Boolean, value: any}</code>, где <b>done=true</b>
+        означает, что цикл завершён, в противном случае <b>value</b> содержит очередное значение.
+      </li>
+    </ul>
+
+    <code class="code-block">
+      let range = <span style="color: red; font-weight: bold;">{</span> <br>
+        &nbsp;&nbsp;from: 1, <br>
+        &nbsp;&nbsp;to: 10, <br> <br>
+
+        &nbsp;&nbsp;[Symbol.iterator]() <span style="color: blue; font-weight: bold;">{</span> <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;let current = this.from <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;let to = this.to <br><br>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;return <span style="color: green; font-weight: bold;">{</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;next() <span style="color: maroon; font-weight: bold;">{</span><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(current <= to) <span style="font-weight: bold;">{</span> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {done: false, value: current++} <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">}</span> <br><br>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {done: true} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: maroon; font-weight: bold;">}</span> <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green; font-weight: bold;">}</span> <br>
+        &nbsp;&nbsp;<span style="color: blue; font-weight: bold;">}</span> <br>
+      <span style="color: red; font-weight: bold;">}</span>
+    </code>
+
+    <h2>Array.from</h2>
+
+    <p>Есть универсальный метод <b>Array.from</b>, который принимает итерируемый объект или псевдомассив и делает из него «настоящий» <b>Array</b>. </p>
+
+    <h3>Полный синтаксис <b>Array.from</b></h3>
+
+    <code class="code-block">
+      Array.from(obj[, mapFn, thisArg])
+    </code>
+
+    <p>Необязательный второй аргумент может быть функцией, которая будет применена к каждому элементу перед добавлением в массив, а <b>thisArg</b> позволяет установить <b>this</b> для этой функции.</p>
+
+    <br><br><a class="link-back" href="../index.html">Назад</a>
   </main>
 
 
   <script src="../../script.js"></script>
+  <script>
+    let range = {
+      from: 1,
+      to: 10,
+
+      [Symbol.iterator]() {
+        let current = this.from
+        let to = this.to
+
+        return {
+          next() {
+            if(current <= to) {
+              return {done: false, value: current++}
+            }
+
+            return {done: true}
+          }
+        }
+      }
+    }
+
+    let range = {
+      from: 1,
+      to: 10,
+
+      [Symbol.iterator]() {
+        this.current = this.from
+        return this
+      },
+
+      next() {
+        if (this.current <= this.to) {
+          return {
+            done: false,
+            value: this.current++
+          }
+        }
+
+        return {
+          done: true
+        }
+
+      }
+    }
+
+    for (let item of range) {
+      console.log(item)
+    }
+  </script>
 </body>
 
 </html>

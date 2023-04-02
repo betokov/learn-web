@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map & Set</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Map и Set</h1>
+
+    <h2>Map</h2>
+
+    <p><b>Map</b> – это коллекция ключ/значение, как и <b>Object</b>. Но основное отличие в том, что <b>Map</b> позволяет использовать ключи любого типа.</p>
+
+    <h3>Методы и свойства:</h3>
+
+    <ul>
+      <li><b>new Map()</b> – создаёт коллекцию.</li>
+      <li><b>map.set(key, value)</b> – записывает по ключу <b>key</b> значение <b>value</b>.</li>
+      <li><b>map.get(key)</b> – возвращает значение по ключу или <b>undefined</b>, если ключ <b>key</b> отсутствует.</li>
+      <li><b>map.has(key)</b> – возвращает <b>true</b>, если ключ key присутствует в коллекции, иначе <b>false</b>.</li>
+      <li><b>map.delete(key)</b> – удаляет элемент (пару «ключ/значение») по ключу <b>key</b>.</li>
+      <li><b>map.clear()</b> – очищает коллекцию от всех элементов.</li>
+      <li><b>map.size </b>– возвращает текущее количество элементов.</li>
+    </ul>
+
+    <h3>Как объект <b>Map</b> сравнивает ключи</h3>
+
+    <p>Чтобы сравнивать ключи, объект <b>Map</b> использует алгоритм <b>SameValueZero</b>. Это почти такое же сравнение, что и <b>===</b>, с той лишь разницей, что <b>NaN</b> считается равным <b>NaN</b>. Так что <b>NaN</b> также может использоваться в качестве ключа.</p>
+
+    <h3>Цепочка вызовов</h3>
+
+    <p>Каждый вызов <b>map.set</b> возвращает объект <b>map</b>, так что мы можем объединить вызовы в цепочку:</p>
+
+    <code class="code-block">
+      map.set("1", "str1") <br>
+      .set(1, "num1") <br>
+      .set(true, "bool1");
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>
