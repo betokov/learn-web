@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeakMap и WeakSet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">WeakMap и WeakSet</h1>
+
+    <p><b>WeakMap</b> – принципиально другая структура в аспекте сборщика мусора. Она не предотвращает удаление объектов сборщиком мусора, когда эти объекты выступают в качестве ключей.</p>
+
+    <h2>WeakMap</h2>
+
+    <p>Первое его отличие от <b>Map</b> в том, что ключи в <b>WeakMap</b> должны быть объектами, а не примитивными значениями.</p>
+
+    <p><b>WeakMap</b> не поддерживает перебор и методы <b>keys()</b>, <b>values()</b>, <b>entries()</b>, так что нет способа взять все ключи или значения из неё.</p>
+
+    <h2>WeakSet</h2>
+
+    <ul>
+      <li>Она аналогична <b>Set</b>, но мы можем добавлять в <b>WeakSet</b> только объекты (не примитивные значения).</li>
+      <li>Объект присутствует в множестве только до тех пор, пока доступен где-то ещё.</li>
+      <li>Как и <b>Set</b>, она поддерживает <b>add</b>, <b>has</b> и <b>delete</b>, но не <b>size</b>, <b>keys()</b> и не является перебираемой.</li>
+    </ul>
+
+    <p>Наиболее значительным ограничением <b>WeakMap</b> и <b>WeakSet</b> является то, что их нельзя перебрать или взять всё содержимое. Это может доставлять неудобства, но не мешает <b>WeakMap/WeakSet</b> выполнять их главную задачу – быть дополнительным хранилищем данных для объектов, управляемых из каких-то других мест в коде.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

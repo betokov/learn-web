@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object.keys, values, entries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Object.keys, values, entries</h1>
+
+    <p>Для простых объектов доступны следующие методы:</p>
+
+    <ul>
+      <li><b>Object.keys(obj)</b> – возвращает массив ключей.</li>
+      <li><b>Object.values(obj)</b> – возвращает массив значений.</li>
+      <li><b>Object.entries(obj)</b> – возвращает массив пар <b>[ключ, значение]</b>.</li>
+    </ul>
+
+    <p><b>Object.keys/values/entries</b> игнорируют символьные свойства <br>
+      Так же, как и цикл <b>for..in</b>, эти методы игнорируют свойства, использующие <b>Symbol(...)</b> в качестве ключей. <br><br>
+
+      Обычно это удобно. Но если требуется учитывать и символьные ключи, то для этого существует отдельный метод <b>Object.getOwnPropertySymbols</b>, возвращающий массив только символьных ключей. Также, существует метод <b>Reflect.ownKeys(obj)</b>, который возвращает все ключи.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>
