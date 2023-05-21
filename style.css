@@ -101,7 +101,7 @@ li {
   display: block;
   background-position: 0 0;
   background-repeat: no-repeat;
-  background-image: url("../img/sun.png");
+  background-image: url("./img/sun.png");
 
   width: 16px;
   height: 16px;
@@ -117,7 +117,7 @@ li {
   display: block;
   background-position: 0 0;
   background-repeat: no-repeat;
-  background-image: url("../img/moon.png");
+  background-image: url("./img/moon.png");
 
 
   width: 16px;

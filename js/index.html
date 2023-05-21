@@ -8,7 +8,8 @@
   <title>Js</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -54,6 +55,9 @@
           <li><a href="pages-one/map-set.html">Map и Set</a></li>
           <li><a href="pages-one/weakmap-weakset.html">WeakMap и WeakSet</a></li>
           <li><a href="pages-one/keys-values-entries.html">Object.keys, values, entries</a></li>
+          <li><a href="pages-one/destructuring-assignment.html">Деструктурирующее присваивание</a></li>
+          <li><a href="pages-one/date.html">Дата и время</a></li>
+          <li><a href="pages-one/json.html">Формат JSON, метод toJSON</a></li>
         </ul>
       </div>
 
@@ -70,6 +74,18 @@
   </main>
 
   <script src="../script.js"></script>
+
+  <script>
+    function pow(x, n) {
+      if (n === 1) {
+        return x;
+      }
+
+      return x * pow(x, n - 1);
+    }
+
+    console.log(pow(2, 3));
+  </script>
 </body>
 
 </html>

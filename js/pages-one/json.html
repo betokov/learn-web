@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Json</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Формат JSON, метод toJSON</h1>
+
+    <h2>JSON.stringify</h2>
+
+    <p><b>JSON</b> (JavaScript Object Notation) – это общий формат для представления значений и объектов.</p>
+
+    <p>Метод <b>JSON.stringify(student)</b> берёт объект и преобразует его в строку.</p>
+
+    <p>Полученная строка <b>json</b> называется <i>JSON-форматированным</i> или сериализованным объектом. Мы можем отправить его по сети или поместить в обычное хранилище данных.</p>
+
+    <p>объект в формате JSON имеет несколько важных отличий от объектного литерала:</p>
+
+    <ul>
+      <li>Строки используют двойные кавычки. Никаких одинарных кавычек или обратных кавычек в JSON. Так <b>'John'</b> становится <b>"John"</b>.</li>
+      <li>Имена свойств объекта также заключаются в двойные кавычки. Это обязательно. Так <b>age:30</b> становится <b>"age":30</b></li>
+    </ul>
+
+    <p><b>JSON.stringify</b> может быть применён и к примитивам. JSON поддерживает следующие типы данных:</p>
+
+    <ul>
+      <li>Объекты { ... }</li>
+      <li>Массивы [ ... ]</li>
+      <li>Примитивы:
+        <ul>
+          <li>строки,</li>
+          <li>числа,</li>
+          <li>логические значения true/false,</li>
+          <li>null.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>JSON является независимой от языка спецификацией для данных, поэтому <b>JSON.stringify</b> пропускает некоторые специфические свойства объектов JavaScript.</p>
+
+    <ul>
+      <li>Свойства-функции (методы).</li>
+      <li>Символьные ключи и значения.</li>
+      <li>Свойства, содержащие <b>undefined</b>.</li>
+    </ul>
+
+    <p>Важное ограничение: не должно быть циклических ссылок.</p>
+
+    <code class="code-block">
+      let room = { <br>
+        &nbsp;&nbsp;number: 23 <br>
+      }; <br><br>
+
+      let meetup = { <br>
+        &nbsp;&nbsp;title: "Conference", <br>
+        &nbsp;&nbsp;participants: ["john", "ann"] <br>
+      }; <br><br>
+
+      meetup.place = room;       // meetup ссылается на room <br>
+      room.occupiedBy = meetup; // room ссылается на meetup <br><br>
+
+      JSON.stringify(meetup); // Ошибка: Преобразование цикличной структуры в JSON
+    </code>
+
+    <h2>Исключаем и преобразуем: replacer</h2>
+
+    <p>Полный синтаксис <b>JSON.stringify</b>:</p>
+
+    <code class="code-block">
+      let json = JSON.stringify(value, [replacer, space])
+    </code>
+
+    <ul>
+      <li><b>value</b> -  Значение для кодирования.</li>
+      <li><b>replacer</b> - Массив свойств для кодирования или функция соответствия <b>function(key, value)</b>.</li>
+      <li><b>space</b> - Дополнительное пространство (отступы), используемое для форматирования.</li>
+    </ul>
+
+    <h2>Форматирование: space</h2>
+
+    <p>Третий аргумент в <b>JSON.stringify(value, replacer, space)</b> – это количество пробелов, используемых для удобного форматирования.</p>
+
+    <code class="code-block">
+      alert(JSON.stringify(user, null, 2));
+    </code>
+
+    <h2>JSON.parse</h2>
+
+    <p>Чтобы декодировать <b>JSON-строку</b>, нам нужен другой метод с именем <b>JSON.parse</b>.</p>
+
+    <code class="code-block">
+      let value = JSON.parse(str, [reviver]);
+    </code>
+
+    <ul>
+      <li><b>str</b> - JSON для преобразования в объект.</li>
+      <li><b>reviver</b> - Необязательная функция, которая будет вызываться для каждой пары (ключ, значение) и может преобразовывать значение.</li>
+    </ul>
+
+    <h2>Использование reviver</h2>
+
+    <code class="code-block">
+      let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}'; <br><br>
+
+      let meetup = JSON.parse(str); <br><br>
+
+      alert( meetup.date.getDate() ); // Ошибка!
+    </code>
+
+    <p>Значением <b>meetup.date</b> является строка, а не <b>Date</b> объект. Как <b>JSON.parse</b> мог знать, что он должен был преобразовать эту строку в <b>Date</b>?</p>
+
+    <code class="code-block">
+      let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}'; <br><br>
+
+      let meetup = JSON.parse(str, function(key, value) { <br>
+        &nbsp;&nbsp;if (key == 'date') return new Date(value); <br>
+        &nbsp;&nbsp;return value; <br>
+      }); <br><br>
+
+      alert( meetup.date.getDate() ); // 30 - теперь работает!
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

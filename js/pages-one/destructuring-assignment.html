@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Деструктурирующее присваивание</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Деструктурирующее присваивание</h1>
+
+    <p><b><i>Деструктурирующее присваивание</i></b> – это специальный синтаксис, который позволяет нам «распаковать» массивы или объекты в несколько переменных, так как иногда они более удобны.</p>
+
+    <p><b><i>Деструктуризация</i></b> также прекрасно работает со сложными функциями, которые имеют много параметров, значений по умолчанию и так далее.</p>
+
+    <h2>Деструктуризация массива</h2>
+
+    <code class="code-block">
+      let arr = ["Ilya", "Kantor"]; <br><br>
+
+      let [firstName, surname] = arr;
+    </code>
+
+    <fieldset>
+      <legend>«Деструктуризация» не означает «разрушение».</legend>
+
+      <p><b><i>«Деструктурирующее присваивание»</i></b> не уничтожает массив. Оно вообще ничего не делает с правой частью присваивания, его задача – только скопировать нужные значения в переменные.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Пропускайте элементы, используя запятые</legend>
+
+      <p>Нежелательные элементы массива также могут быть отброшены с помощью дополнительной запятой:</p>
+
+      <code class="code-block">
+        // второй элемент не нужен <br>
+        let arr = ["Julius", "Caesar", "Consul", "Roman Republic"]; <br>
+        let [firstName, , title] = arr;
+      </code>
+    </fieldset>
+
+    <fieldset>
+      <legend>Работает с любым перебираемым объектом с правой стороны</legend>
+
+      <p>Работает с любым перебираемым объектом с правой стороны</p>
+
+      <code class="code-block">
+        let [a, b, c] = "abc"; <br>
+        let [one, two, three] = new Set([1, 2, 3]);
+      </code>
+    </fieldset>
+
+    <fieldset>
+      <p>Присваивайте чему угодно с левой стороны</p>
+
+      <code class="code-block">
+        let user = {}; <br>
+        [user.name, user.surname] = "Ilya Kantor".split(' ');
+      </code>
+    </fieldset>
+
+    <fieldset>
+      <legend>Цикл с .entries()</legend>
+
+      <p>Мы можем использовать его с деструктуризацией для цикличного перебора ключей и значений объекта:</p>
+
+      <code class="code-block">
+        let user = { <br>
+          &nbsp;&nbsp;name: "John", <br>
+          &nbsp;&nbsp;age: 30 <br>
+        }; <br><br>
+
+        // цикл по ключам и значениям <br>
+        for (let [key, value] of Object.entries(user)) { <br>
+          &nbsp;&nbsp;alert(`${key}:${value}`); // name:John, затем age:30 <br>
+        }
+      </code>
+    </fieldset>
+
+    <fieldset>
+      <legend>Трюк обмена переменных</legend>
+
+      <code class="code-block">
+        let guest = "Jane"; <br>
+        let admin = "Pete"; <br><br>
+
+
+        [guest, admin] = [admin, guest];
+      </code>
+
+      <p>Здесь мы создаём временный массив из двух переменных и немедленно деструктурируем его в порядке замены.</p>
+    </fieldset>
+
+    <h3>Остаточные параметры «…»</h3>
+
+    <code class="code-block">
+      let arr = ["Julius", "Caesar", "Consul", "Roman Republic"]; <br>
+      let [name1, name2, ...rest] = arr;
+    </code>
+
+    <h3>Значения по умолчанию</h3>
+
+    <p>Если мы хотим, чтобы значение «по умолчанию» заменило отсутствующее, мы можем указать его с помощью <b>=</b>:</p>
+
+    <code class="code-block">
+      let [name = "Guest", surname = "Anonymous"] = ["Julius"]; <br><br>
+
+      alert(name);    // Julius (из массива) <br>
+      alert(surname); // Anonymous (значение по умолчанию) <br>
+    </code>
+
+    <p>Значения по умолчанию могут быть гораздо более сложными выражениями или даже функциями. Они выполняются, только если значения отсутствуют.</p>
+
+    <h2>Деструктуризация объекта</h2>
+
+    <code class="code-block">
+      let {var1, var2} = {var1:…, var2:…}
+    </code>
+
+    <p>Свойства объекта присваиваются соответствующим переменным, порядок присваивания не имеет значения.</p>
+
+    <code class="code-block">
+      let {height, width, title} = { title: "Menu", height: 200, width: 100 }
+    </code>
+
+    <p>Если мы хотим присвоить свойство объекта переменной с другим названием, например, свойство <b>options.width</b> присвоить переменной <b>w</b>, то мы можем использовать двоеточие:</p>
+
+    <code class="code-block">
+      // { sourceProperty: targetVariable } <br>
+      let {width: w, height: h, title} = options;
+    </code>
+
+    <p>Для потенциально отсутствующих свойств мы можем установить значения по умолчанию, используя <b>"="</b></p>
+
+    <code class="code-block">
+      let options = { <br>
+        &nbsp;&nbsp;title: "Menu" <br>
+      }; <br><br>
+
+      let {width = 100, height = 200, title} = options;
+    </code>
+
+    <p>Мы также можем совмещать <b>:</b> и <b>=</b>:</p>
+
+    <code class="code-block">
+      let options = { <br>
+        &nbsp;&nbsp;title: "Menu" <br>
+      }; <br><br>
+
+      let {width: w = 100, height: h = 200, title} = options;
+    </code>
+
+    <h3>Остаток объекта «…»</h3>
+
+    <code class="code-block">
+      let {title, ...rest} = options; <br><br>
+
+      // сейчас title="Menu", rest={height: 200, width: 100} <br>
+      alert(rest.height); <br>
+      alert(rest.width);
+    </code>
+
+    <fieldset>
+      <legend>Обратите внимание на let</legend>
+
+      <p>Чтобы показать JavaScript, что это не блок кода, мы можем заключить выражение в скобки <b>(...)</b></p>
+
+      <code class="code-block">
+        let title, width, height; <br><br>
+
+        ({title, width, height} = {title: "Menu", width: 200, height: 100}); <br><br>
+
+        alert( title ); // Menu
+      </code>
+    </fieldset>
+
+    <h3>Вложенная деструктуризация</h3>
+
+    <code class="code-block">
+      let options = { <br>
+        &nbsp;&nbsp;size: { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;width: 100, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;height: 200 <br>
+        &nbsp;&nbsp;}, <br>
+        &nbsp;&nbsp;items: ["Cake", "Donut"], <br>
+        &nbsp;&nbsp;extra: true <br>
+      };<br><br>
+
+      // деструктуризация разбита на несколько строк для ясности <br>
+      let { <br>
+        &nbsp;&nbsp;size: { // положим size сюда <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;width, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;height <br>
+        &nbsp;&nbsp;}, <br>
+        &nbsp;&nbsp;items: [item1, item2], // добавим элементы к items <br>
+        &nbsp;&nbsp;title = "Menu" // отсутствует в объекте (используется значение по умолчанию) <br>
+      } = options; <br><br>
+
+      alert(title);  // Menu <br>
+      alert(width);  // 100 <br>
+      alert(height); // 200 <br>
+      alert(item1);  // Cake <br>
+      alert(item2);  // Donut
+    </code>
+
+    <h3>Умные параметры функций</h3>
+
+    <p>Мы можем передать параметры как объект, и функция немедленно деструктурирует его в переменные</p>
+
+    <code class="code-block">
+      let options = { <br>
+        &nbsp;&nbsp;title: "My menu", <br>
+        &nbsp;&nbsp;items: ["Item1", "Item2"] <br>
+      }; <br><br>
+
+      //немедленно извлекает свойства в переменные <br>
+      function showMenu({title = "Untitled", width = 200, height = 100, items = []}) { <br>
+        &nbsp;&nbsp;// title, items – взято из options, <br>
+        &nbsp;&nbsp;// width, height – используются значения по умолчанию <br>
+        &nbsp;&nbsp;alert( `${title} ${width} ${height}` ); // My Menu 200 100 <br>
+        &nbsp;&nbsp;alert( items ); // Item1, Item2 <br>
+      } <br><br>
+
+      showMenu(options);
+    </code>
+
+    <p>обратите внимание, что такое деструктурирование подразумевает, что в <b>showMenu()</b> будет обязательно передан аргумент. Если нам нужны все значения по умолчанию, то нам следует передать пустой объект:</p>
+
+    <code class="code-block">
+      showMenu({}); // ок, все значения - по умолчанию <br><br>
+
+      showMenu(); // так была бы ошибка
+    </code>
+
+    <p>Мы можем исправить это, сделав <b>{}</b> значением по умолчанию для всего объекта параметров:</p>
+
+    <code class="code-block">
+      function showMenu({ title = "Menu", width = 100, height = 200 } = {}) { <br>
+        &nbsp;&nbsp;alert( `${title} ${width} ${height}` ); <br>
+      } <br><br>
+
+      showMenu();
+    </code>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>

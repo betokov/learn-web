@@ -54,3 +54,7 @@ th {
     justify-content: space-between;
   }
 }
+
+fieldset {
+  margin-bottom: 40px;
+}

@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let checkbox = document.querySelector(".light .checkbox")
   let themeName = document.querySelector(".light span")
 
-  if(defaultChecked !== null) {
+  if (defaultChecked !== null) {
     checkbox.checked = true
     document.body.classList.add("dark")
     themeName.textContent = "Темная"
   }
 
   function checkCheckbox(checkbox) {
-    if(checkbox.checked) {
+    if (checkbox.checked) {
       document.body.classList.add("dark")
       themeName.textContent = "Темная"
       sessionStorage.setItem("checked", "true")
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  button.addEventListener("click", function() {
+  button.addEventListener("click", function () {
     checkCheckbox(checkbox)
   })
 

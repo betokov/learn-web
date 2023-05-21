@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <label class="light">
+      <input class="checkbox" type="checkbox">
+      <span>Переключатель</span>
+    </label>
+  </header>
+
+  <main>
+    <h1 class="javascript-main__title">Дата и время</h1>
+
+    <h2>Создание</h2>
+
+    <code class="code-block">
+      new Date(); <br><br>
+
+      // 0 соответствует 01.01.1970 UTC+0 <br>
+      let Jan01_1970 = new Date(0); <br><br>
+
+      // теперь добавим 24 часа и получим 02.01.1970 UTC+0<br>
+      let Jan02_1970 = new Date(24 * 3600 * 1000);<br>
+    </code>
+
+    <p>Датам до 1 января 1970 будут соответствовать отрицательные таймстампы.</p>
+
+    <h2>Получение компонентов даты</h2>
+
+    <ul>
+      <li><b>getFullYear()</b> - Получить год (4 цифры);</li>
+      <li><b>getMonth()</b> - Получить месяц, от 0 до 11;</li>
+      <li><b>getDate()</b> - Получить день месяца, от 1 до 31, что несколько противоречит названию метода;</li>
+      <li><b>getHours(), getMinutes(), getSeconds(), getMilliseconds()</b> - Получить, часы, минуты, секунды или миллисекунды;</li>
+      <li><b>getDay()</b> - Вернуть день недели от 0 (воскресенье) до 6 (суббота);</li>
+      <li><b>getTime()</b> - Для заданной даты возвращает таймстамп – количество миллисекунд, прошедших с 1 января 1970 года UTC+0.</li>
+    </ul>
+
+    <p>Однако существуют и их UTC-варианты, возвращающие день, месяц, год для временной зоны UTC+0: <b>getUTCFullYear(), getUTCMonth(), getUTCDay()</b>. Для их использования требуется после <b>"get"</b> подставить "UTC".</p>
+
+    <h2>Date.now()</h2>
+
+    <p>Семантически он эквивалентен <b>new Date().getTime()</b>, однако метод не создаёт промежуточный объект <b>Date</b>. Так что этот способ работает быстрее и не нагружает сборщик мусора.</p>
+
+    <br><br><a class="link-back"  href="../index.html">Назад</a>
+  </main>
+
+
+  <script src="../../script.js"></script>
+</body>
+
+</html>
